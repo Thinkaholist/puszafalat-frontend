@@ -1,5 +1,6 @@
 import * as React from 'react';
 import GlobalStyles from '../styles/GlobalStyles';
+import { graphql } from 'gatsby';
 
 const mainStyles = {
   height: '100vh',
@@ -8,7 +9,9 @@ const mainStyles = {
   textAlign: 'center',
 };
 
-const IndexPage = () => {
+const IndexPage = ({ data }) => {
+  const puszafalatok = data.puszafalatok.nodes;
+  console.log(puszafalatok);
   return (
     <>
       {/* TODO: Move GlobalStyles to Layout Component when ready */}
@@ -31,3 +34,32 @@ const IndexPage = () => {
 };
 
 export default IndexPage;
+
+export const query = graphql`
+  query {
+    puszafalatok: allSanityPuszafalat {
+      nodes {
+        origin {
+          hu
+        }
+        title {
+          hu
+        }
+        story {
+          hu
+        }
+        slug {
+          current
+        }
+        song {
+          title {
+            hu
+          }
+          lyrics {
+            hu
+          }
+        }
+      }
+    }
+  }
+`;
