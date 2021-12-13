@@ -1,5 +1,6 @@
 import * as React from 'react';
 import GlobalStyles from '../styles/GlobalStyles';
+import Typography from '../styles/Typography';
 import { graphql } from 'gatsby';
 
 const mainStyles = {
@@ -7,6 +8,7 @@ const mainStyles = {
   display: 'grid',
   placeContent: 'center',
   textAlign: 'center',
+  fontFamily: 'Agrandir',
 };
 
 const IndexPage = ({ data }) => {
@@ -14,10 +16,17 @@ const IndexPage = ({ data }) => {
   console.log(puszafalatok);
   return (
     <>
-      {/* TODO: Move GlobalStyles to Layout Component when ready */}
+      {/* TODO: Move GlobalStyles & Typography to Layout Component when ready */}
       <GlobalStyles />
+      <Typography />
       <main style={mainStyles}>
-        <h1 style={{ fontSize: 40, marginBottom: 32 }}>
+        <h1
+          style={{
+            fontSize: 40,
+            marginBottom: 32,
+            fontWeight: 700,
+          }}
+        >
           Itt a <span style={{ borderBottom: '4px solid' }}>Puszafalat</span>{' '}
           weboldal épül!
         </h1>
