@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import GlobalStyles from '../styles/GlobalStyles';
 import Typography from '../styles/Typography';
+import Header from './Header';
 
 const Wrapper = styled.div`
   display: flex;
@@ -17,9 +18,18 @@ export default function Layout({ location, children }) {
       <Wrapper>
         <Typography />
         <GlobalStyles />
-        <header>header</header>
+        <Header />
         <MainContent>{children}</MainContent>
-        <footer>footer</footer>
+        <footer
+          style={{
+            marginTop: 'auto',
+            padding: 20,
+            backgroundColor: 'var(--clr-black)',
+            color: 'white',
+          }}
+        >
+          footer
+        </footer>
       </Wrapper>
     </>
   );

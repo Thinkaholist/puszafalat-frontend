@@ -54,7 +54,7 @@ const GlobalStyles = createGlobalStyle`
     /*
     9. Create a root stacking context
     */
-    #root, #__next {
+    #root, #__next, #___gatsby {
         isolation: isolate;
     }
 
@@ -79,7 +79,6 @@ const GlobalStyles = createGlobalStyle`
 
     html, body, #___gatsby, #gatsby-focus-wrapper {
         height: 100%;
-
     }
 
     body {

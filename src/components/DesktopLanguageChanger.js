@@ -3,15 +3,16 @@ import styled from 'styled-components';
 import { QUERIES } from '../constants';
 
 const LanguageCodeStyles = styled.p`
+  display: none;
   @media ${QUERIES.tabletAndUp} {
-    display: none;
+    display: block;
   } ;
 `;
 
-export default function MobileLangugeChanger() {
+export default function DesktopLangugeChanger() {
   return (
     <>
-      <LanguageCodeStyles>HU</LanguageCodeStyles>
+      <LanguageCodeStyles>HU / EN / SK</LanguageCodeStyles>
     </>
   );
 }
