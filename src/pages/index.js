@@ -1,7 +1,7 @@
 import * as React from 'react';
-import GlobalStyles from '../styles/GlobalStyles';
-import Typography from '../styles/Typography';
+import Layout from '../components/Layout';
 import { graphql } from 'gatsby';
+
 
 const mainStyles = {
   height: '100vh',
@@ -16,9 +16,7 @@ const IndexPage = ({ data }) => {
   console.log(puszafalatok);
   return (
     <>
-      {/* TODO: Move GlobalStyles & Typography to Layout Component when ready */}
-      <GlobalStyles />
-      <Typography />
+    <Layout>
       <main style={mainStyles}>
         <h1
           style={{
@@ -36,8 +34,9 @@ const IndexPage = ({ data }) => {
             alt='under construction illustration'
             style={{ width: '70%' }}
           />
-        </div>
+        </div> 
       </main>
+      </Layout>
     </>
   );
 };
