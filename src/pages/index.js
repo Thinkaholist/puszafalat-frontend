@@ -1,13 +1,14 @@
 import * as React from 'react';
-import GlobalStyles from '../styles/GlobalStyles';
-import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
+import { graphql } from 'gatsby';
+
 
 const mainStyles = {
   height: '100vh',
   display: 'grid',
   placeContent: 'center',
   textAlign: 'center',
+  fontFamily: 'Agrandir',
 };
 
 const IndexPage = ({ data }) => {
@@ -15,11 +16,16 @@ const IndexPage = ({ data }) => {
   console.log(puszafalatok);
   return (
     <>
-      {/* TODO: Move GlobalStyles to Layout Component when ready */}
-      <GlobalStyles />
+    
+  <Layout>
       <main style={mainStyles}>
-        <Layout/>
-        {/* <h1 style={{ fontSize: 40, marginBottom: 32 }}>
+        <h1
+          style={{
+            fontSize: 40,
+            marginBottom: 32,
+            fontWeight: 700,
+          }}
+        >
           Itt a <span style={{ borderBottom: '4px solid' }}>Puszafalat</span>{' '}
           weboldal épül!
         </h1>
@@ -29,8 +35,9 @@ const IndexPage = ({ data }) => {
             alt='under construction illustration'
             style={{ width: '70%' }}
           />
-        </div> */}
+        </div> 
       </main>
+      </Layout>
     </>
   );
 };
