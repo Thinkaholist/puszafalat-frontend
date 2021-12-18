@@ -1,6 +1,7 @@
 import * as React from 'react';
 import GlobalStyles from '../styles/GlobalStyles';
 import { graphql } from 'gatsby';
+import Layout from '../components/Layout';
 
 const mainStyles = {
   height: '100vh',
@@ -17,7 +18,8 @@ const IndexPage = ({ data }) => {
       {/* TODO: Move GlobalStyles to Layout Component when ready */}
       <GlobalStyles />
       <main style={mainStyles}>
-        <h1 style={{ fontSize: 40, marginBottom: 32 }}>
+        <Layout/>
+        {/* <h1 style={{ fontSize: 40, marginBottom: 32 }}>
           Itt a <span style={{ borderBottom: '4px solid' }}>Puszafalat</span>{' '}
           weboldal épül!
         </h1>
@@ -27,7 +29,7 @@ const IndexPage = ({ data }) => {
             alt='under construction illustration'
             style={{ width: '70%' }}
           />
-        </div>
+        </div> */}
       </main>
     </>
   );
