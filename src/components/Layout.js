@@ -9,9 +9,7 @@ const Wrapper = styled.div`
   min-height: 100%;
 `;
 
-const MainContent = styled.main`
-  
-`;
+const MainContent = styled.main``;
 
 export default function Layout({ location, children }) {
   return (
