@@ -77,6 +77,11 @@ const GlobalStyles = createGlobalStyle`
 
     /* Custom Global Styles */
 
+    html, body, #___gatsby, #gatsby-focus-wrapper {
+        height: 100%;
+
+    }
+
     body {
         background-color: var(--clr-background);
         color: var(--clr-black);

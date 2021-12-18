@@ -16,8 +16,7 @@ const IndexPage = ({ data }) => {
   console.log(puszafalatok);
   return (
     <>
-    
-  <Layout>
+    <Layout>
       <main style={mainStyles}>
         <h1
           style={{
