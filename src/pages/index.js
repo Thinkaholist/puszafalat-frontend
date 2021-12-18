@@ -2,6 +2,7 @@ import * as React from 'react';
 import GlobalStyles from '../styles/GlobalStyles';
 import Typography from '../styles/Typography';
 import { graphql } from 'gatsby';
+import Header from '../components/Header';
 
 const mainStyles = {
   height: '100vh',
@@ -19,6 +20,7 @@ const IndexPage = ({ data }) => {
       {/* TODO: Move GlobalStyles & Typography to Layout Component when ready */}
       <GlobalStyles />
       <Typography />
+      <Header />
       <main style={mainStyles}>
         <h1
           style={{

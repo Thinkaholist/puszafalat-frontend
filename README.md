@@ -16,7 +16,7 @@ https://puszafalat-dev.netlify.app
 
 https://app.netlify.com/sites/puszafalat/deploys
 
-https://puszafalat-dev.netlify.app
+https://puszafalat.netlify.app
 
 ## Backend
 
