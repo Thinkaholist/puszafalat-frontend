@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
+import Img from 'gatsby-plugin-sanity-image';
 import styled from 'styled-components';
 import localize from '../components/localize';
 import Layout from '../components/Layout';
@@ -30,20 +31,43 @@ const Receptek = ({ data, location }) => {
           style={{
             display: 'grid',
             gridTemplateColumns:
-              'repeat(auto-fill, minmax(min(250px, 100%), 1fr))',
-            gap: '1rem',
+              'repeat(auto-fill, minmax(min(227px, 100%), 1fr))',
+            gap: 20,
+            margin: '0 0 2rem 0',
           }}
         >
           {puszafalatok.map(
-            ({ _id, title, slug: { current }, recipe: { category, name } }) => (
+            ({
+              _id,
+              title,
+              slug: { current },
+              illustration,
+              recipe: { category, name },
+            }) => (
               <LinkStyles
                 key={_id}
                 to={`${getLocale(pathname)}/puszafalat/${current}`}
               >
                 <article
-                  style={{ padding: 20, border: '1px solid', height: '100%' }}
+                  style={{
+                    padding: 20,
+                    border: '1px solid',
+                    borderRadius: 12,
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    gap: 4,
+                  }}
                 >
-                  {title} ({name})
+                  <h3>
+                    {title} ({name})
+                  </h3>
+                  <Img
+                    {...illustration.image}
+                    alt={illustration.altText}
+                    style={{ width: 175 }}
+                  />
                 </article>
               </LinkStyles>
             )
@@ -89,6 +113,12 @@ export const query = graphql`
           hu
           en
           sk
+        }
+        illustration {
+          altText
+          image {
+            ...ImageWithPreview
+          }
         }
         recipe {
           name {
