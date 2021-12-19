@@ -17,6 +17,26 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
         menuItemText={data.header.recipesMenuItemText}
         disclaimerText={data.footer.disclaimerText}
       >
+        <div style={{ display: 'flex', gap: '1rem' }}>
+          {data.previous && (
+            <Link
+              to={`${locale === '' ? '' : `/${locale}`}/puszafalat/${
+                data.previous.slug.current
+              }`}
+            >
+              &lt;- {data.previous.title}
+            </Link>
+          )}
+          {data.next && (
+            <Link
+              to={`${locale === '' ? '' : `/${locale}`}/puszafalat/${
+                data.next.slug.current
+              }`}
+            >
+              {data.next.title} -&gt;
+            </Link>
+          )}
+        </div>
         <h1>{data.puszafalat.title}</h1>
         <div style={{ width: 300, marginTop: '1rem' }}>
           <Img
