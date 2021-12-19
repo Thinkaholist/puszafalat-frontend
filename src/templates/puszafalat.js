@@ -68,6 +68,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
             fontFamily: 'Adelle',
             fontSize: 18,
             fontWeight: 700,
+            fontStyle: 'italic',
           }}
         >
           {lineBreakedIngredients}
