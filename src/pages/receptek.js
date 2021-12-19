@@ -8,9 +8,6 @@ const LinkStyles = styled(Link)`
   display: block;
   text-decoration: none;
   color: inherit;
-  &:hover {
-    text-decoration: underline;
-  }
 `;
 
 const Receptek = ({ data, location }) => {
@@ -29,16 +26,29 @@ const Receptek = ({ data, location }) => {
           <button disabled>{data.recipesPage.dessertsButtonText}</button>
           <button disabled>{data.recipesPage.mainCoursesButtonText}</button>
         </div>
-        {puszafalatok.map(
-          ({ _id, title, slug: { current }, recipe: { category, name } }) => (
-            <LinkStyles
-              key={_id}
-              to={`${getLocale(pathname)}/puszafalat/${current}`}
-            >
-              {title} ({name})
-            </LinkStyles>
-          )
-        )}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns:
+              'repeat(auto-fill, minmax(min(250px, 100%), 1fr))',
+            gap: '1rem',
+          }}
+        >
+          {puszafalatok.map(
+            ({ _id, title, slug: { current }, recipe: { category, name } }) => (
+              <LinkStyles
+                key={_id}
+                to={`${getLocale(pathname)}/puszafalat/${current}`}
+              >
+                <article
+                  style={{ padding: 20, border: '1px solid', height: '100%' }}
+                >
+                  {title} ({name})
+                </article>
+              </LinkStyles>
+            )
+          )}
+        </div>
       </Layout>
     </>
   );

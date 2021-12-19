@@ -22,7 +22,13 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
         menuItemText={data.header.recipesMenuItemText}
         disclaimerText={data.footer.disclaimerText}
       >
-        <div style={{ display: 'flex', gap: '1rem' }}>
+        <div
+          style={{
+            display: 'flex',
+            gap: '1rem',
+            justifyContent: 'space-between',
+          }}
+        >
           {data.previous && (
             <Link
               to={`${locale === '' ? '' : `/${locale}`}/puszafalat/${
