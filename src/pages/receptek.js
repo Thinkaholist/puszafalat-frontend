@@ -1,7 +1,17 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
+import styled from 'styled-components';
 import localize from '../components/localize';
 import Layout from '../components/Layout';
+
+const LinkStyles = styled(Link)`
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 const Receptek = ({ data, location }) => {
   const puszafalatok = data.allSanityPuszafalat.nodes;
@@ -14,22 +24,19 @@ const Receptek = ({ data, location }) => {
         menuItemText={data.header.recipesMenuItemText}
         disclaimerText={data.footer.disclaimerText}
       >
-        <h1>Receptek</h1>
-        <button>{data.recipesPage.appetizersButtonText}</button>
-        <button>{data.recipesPage.dessertsButtonText}</button>
-        <button>{data.recipesPage.mainCoursesButtonText}</button>
+        <div style={{ marginBottom: 40 }}>
+          <button disabled>{data.recipesPage.appetizersButtonText}</button>
+          <button disabled>{data.recipesPage.dessertsButtonText}</button>
+          <button disabled>{data.recipesPage.mainCoursesButtonText}</button>
+        </div>
         {puszafalatok.map(
-          ({
-            _id,
-            title,
-            slug: { current },
-            recipe: {
-              category: { name },
-            },
-          }) => (
-            <Link key={_id} to={`${getLocale(pathname)}/puszafalat/${current}`}>
-              {title}({name})
-            </Link>
+          ({ _id, title, slug: { current }, recipe: { category, name } }) => (
+            <LinkStyles
+              key={_id}
+              to={`${getLocale(pathname)}/puszafalat/${current}`}
+            >
+              {title} ({name})
+            </LinkStyles>
           )
         )}
       </Layout>
@@ -74,6 +81,12 @@ export const query = graphql`
           sk
         }
         recipe {
+          name {
+            _type
+            hu
+            en
+            sk
+          }
           category {
             name {
               _type

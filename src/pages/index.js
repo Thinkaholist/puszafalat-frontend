@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import localize from '../components/localize';
 
@@ -22,16 +22,8 @@ const IndexPage = ({ data, location }) => {
           >
             {data.homePage.headerText}
           </h1>
-          {data.puszafalatok.nodes.map((pf) => (
-            <Link
-              key={pf.slug.current}
-              to={`${
-                location.pathname === '/' ? '' : location.pathname
-              }/puszafalat/${pf.slug.current}`}
-            >
-              {pf.title}
-            </Link>
-          ))}
+          <p>{data.homePage.subHeaderText}</p>
+          <p>{data.homePage.bandCampText}</p>
         </div>
       </Layout>
     </>
@@ -49,18 +41,17 @@ export const query = graphql`
         hu
         sk
       }
-    }
-    puszafalatok: allSanityPuszafalat {
-      nodes {
-        slug {
-          current
-        }
-        title {
-          _type
-          hu
-          en
-          sk
-        }
+      subHeaderText {
+        _type
+        en
+        hu
+        sk
+      }
+      bandCampText {
+        _type
+        en
+        hu
+        sk
       }
     }
     header: sanityHeaderPage(_id: { eq: "headerPage" }) {
