@@ -7,7 +7,12 @@ module.exports = {
     {
       resolve: `@slixites/gatsby-plugin-google-fonts`,
       options: {
-        fonts: [`Grandstander\:400,400i,500,700,800`],
+        fonts: [
+          `Grandstander\:400,400i,500,700,800`,
+          `Truculenta\:400,400i,500,700,800`,
+          `Alegreya\:400,400i,500,700,800`,
+          `Domine\:400,400i,500,700,800`,
+        ],
         display: 'swap',
         preconnect: true,
         attributes: {

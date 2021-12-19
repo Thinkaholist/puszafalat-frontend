@@ -71,7 +71,7 @@ const GlobalStyles = createGlobalStyle`
         --clr-orange: hsla(15 80% 55% / 1);
         --clr-pink: hsla(336 67% 67% / 1);
         
-        --font-family: 'Grandstander',/*'Agrandir',*/-apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+        --font-family: 'Domine',/*'Agrandir',*/-apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
     }
     
 

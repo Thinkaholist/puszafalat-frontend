@@ -102,7 +102,7 @@ export const query = graphql`
         sk
       }
     }
-    allSanityPuszafalat {
+    allSanityPuszafalat(sort: { fields: rank, order: ASC }) {
       nodes {
         _id
         slug {

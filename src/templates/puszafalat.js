@@ -57,7 +57,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
             style={{ width: '100%' }}
           />
         </div>
-        <p>{data.puszafalat.story}</p>
+        <p style={{ fontSize: 20 }}>{data.puszafalat.story}</p>
         <br />
         <hr />
         <br />

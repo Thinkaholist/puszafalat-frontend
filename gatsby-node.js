@@ -15,7 +15,6 @@ const createLocalePage = (page, createPage) => {
       locale: process.env.LOCALE,
     },
   });
-  console.log('--------LOCALE', process.env.LOCALE);
 
   if (extraLanguages.length) {
     extraLanguages.forEach((code) => {
