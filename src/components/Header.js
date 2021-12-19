@@ -9,7 +9,7 @@ import { ContainerStyles } from '../styles/ContainerStyles';
 import { QUERIES } from '../constants';
 
 const HeaderStyles = styled.header`
-  font-weight: 800;
+  font-weight: 500;
   font-size: 14px;
   padding: 1rem 0;
 `;
