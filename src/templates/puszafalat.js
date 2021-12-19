@@ -46,6 +46,20 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
             style={{ width: '100%' }}
           />
         </div>
+        <p>{data.puszafalat.story}</p>
+        <br />
+        <hr />
+        <br />
+        <h2>{data.puszafalat.recipe.name}</h2>
+        <p>{data.puszafalat.recipe.ingredients}</p>
+        <p>{data.puszafalat.recipe.making}</p>
+        <br />
+        <hr />
+        <h2>{data.puszafalat.song.title}</h2>
+        <p>{data.puszafalat.song.lyrics}</p>
+        <br />
+        <hr />
+        <br />
       </Layout>
     </>
   );
@@ -66,10 +80,50 @@ export const query = graphql`
         en
         sk
       }
+      story {
+        _type
+        hu
+        en
+        sk
+      }
       illustration {
         altText
         image {
           ...ImageWithPreview
+        }
+      }
+      recipe {
+        name {
+          _type
+          hu
+          en
+          sk
+        }
+        ingredients {
+          _type
+          hu
+          en
+          sk
+        }
+        making {
+          _type
+          hu
+          en
+          sk
+        }
+      }
+      song {
+        title {
+          _type
+          hu
+          en
+          sk
+        }
+        lyrics {
+          _type
+          hu
+          en
+          sk
         }
       }
     }
