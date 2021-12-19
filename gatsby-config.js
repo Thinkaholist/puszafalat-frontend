@@ -5,6 +5,18 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `@slixites/gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [`Grandstander\:400,400i,500,700,800`],
+        display: 'swap',
+        preconnect: true,
+        attributes: {
+          rel: 'stylesheet preload prefetch',
+          as: 'style',
+        },
+      },
+    },
+    {
       resolve: 'gatsby-source-sanity',
       options: {
         projectId: '6h8tota2',
