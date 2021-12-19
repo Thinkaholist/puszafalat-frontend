@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../components/Header';
 import { defaultLang } from '../config';
 import Img from 'gatsby-plugin-sanity-image';
 import { graphql, Link } from 'gatsby';
@@ -10,6 +9,12 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
   console.log({ location });
   console.log({ locale });
   console.log({ data });
+  const ingredients = data.puszafalat.recipe.ingredients;
+  const lineBreakedIngredients = ingredients
+    .split('\n')
+    .map((row) => <p>{row}</p>);
+  const lyrics = data.puszafalat.song.lyrics;
+  const lineBreakedLyrics = lyrics.split('\n').map((row) => <p>{row}</p>);
   return (
     <>
       <Layout
@@ -51,12 +56,32 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
         <hr />
         <br />
         <h2>{data.puszafalat.recipe.name}</h2>
-        <p>{data.puszafalat.recipe.ingredients}</p>
-        <p>{data.puszafalat.recipe.making}</p>
+        <div
+          style={{
+            margin: '1rem 0',
+            fontFamily: 'Adelle',
+            fontSize: 18,
+            fontWeight: 700,
+          }}
+        >
+          {lineBreakedIngredients}
+        </div>
+        <p style={{ fontFamily: 'Adelle', fontSize: 16, fontWeight: 400 }}>
+          {data.puszafalat.recipe.making}
+        </p>
         <br />
         <hr />
-        <h2>{data.puszafalat.song.title}</h2>
-        <p>{data.puszafalat.song.lyrics}</p>
+        <h2
+          style={{
+            margin: '1rem 0',
+            fontWeight: 800,
+            fontSize: 18,
+            textAlign: 'center',
+          }}
+        >
+          {data.puszafalat.song.title}
+        </h2>
+        <div style={{ textAlign: 'center' }}>{lineBreakedLyrics}</div>
         <br />
         <hr />
         <br />
