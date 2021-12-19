@@ -9,6 +9,7 @@ module.exports = {
       options: {
         projectId: '6h8tota2',
         dataset: 'production',
+        watchMode: process.env.NODE_ENV === 'development',
       },
     },
     'gatsby-plugin-styled-components',
