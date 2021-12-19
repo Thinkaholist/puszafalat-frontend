@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import { defaultLang } from '../config';
+import Img from 'gatsby-plugin-sanity-image';
 import { graphql, Link } from 'gatsby';
 import localize from '../components/localize';
 import Layout from '../components/Layout';
@@ -17,6 +18,14 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
         disclaimerText={data.footer.disclaimerText}
       >
         <h1>{data.puszafalat.title}</h1>
+        <div style={{ width: 300, marginTop: '1rem' }}>
+          <Img
+            {...data.puszafalat.illustration.image}
+            alt={data.puszafalat.illustration.altText}
+            width={800}
+            style={{ width: '100%' }}
+          />
+        </div>
       </Layout>
     </>
   );
@@ -36,6 +45,12 @@ export const query = graphql`
         hu
         en
         sk
+      }
+      illustration {
+        altText
+        image {
+          ...ImageWithPreview
+        }
       }
     }
     previous: sanityPuszafalat(slug: { current: { eq: $previousSlug } }) {

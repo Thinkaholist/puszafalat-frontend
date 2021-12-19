@@ -25,5 +25,13 @@ module.exports = {
       },
       __key: 'images',
     },
+    {
+      resolve: 'gatsby-plugin-sanity-image',
+      options: {
+        // Sanity project info (required)
+        projectId: '6h8tota2',
+        dataset: 'production',
+      },
+    },
   ],
 };
