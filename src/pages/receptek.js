@@ -70,6 +70,7 @@ const Receptek = ({ data, location }) => {
               paddingLeft: 16,
               marginBottom: 16,
               width: 400,
+              maxWidth: '100%',
               fontSize: 18,
               borderRadius: 6,
               border: '1px solid hsla(0, 0%, 0%, 0.3)',
