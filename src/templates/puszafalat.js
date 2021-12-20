@@ -48,8 +48,16 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
             </Link>
           )}
         </div>
-        <h1>{data.puszafalat.title}</h1>
-        <div style={{ width: 300, marginTop: '1rem' }}>
+        <h1 style={{ margin: '1rem 0' }}>{data.puszafalat.title}</h1>
+        <p style={{ fontSize: 20, marginTop: '1rem' }}>
+          {data.puszafalat.story}
+        </p>
+        <div
+          style={{
+            marginTop: '2rem',
+            display: 'flex',
+          }}
+        >
           <Img
             {...data.puszafalat.illustration.image}
             alt={data.puszafalat.illustration.altText}
@@ -57,7 +65,6 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
             style={{ width: '100%' }}
           />
         </div>
-        <p style={{ fontSize: 20 }}>{data.puszafalat.story}</p>
         <br />
         <hr />
         <br />
@@ -73,7 +80,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
         >
           {lineBreakedIngredients}
         </div>
-        <p style={{ fontFamily: 'Adelle', fontSize: 16, fontWeight: 400 }}>
+        <p style={{ fontFamily: 'Adelle', fontSize: 18, fontWeight: 400 }}>
           {data.puszafalat.recipe.making}
         </p>
         <br />

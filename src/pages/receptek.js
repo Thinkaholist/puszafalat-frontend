@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-plugin-sanity-image';
 import styled from 'styled-components';
@@ -13,7 +13,39 @@ const LinkStyles = styled(Link)`
 
 const Receptek = ({ data, location }) => {
   const puszafalatok = data.allSanityPuszafalat.nodes;
+  console.log({ puszafalatok });
   const { pathname } = location;
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filtered, setFiltered] = useState(puszafalatok);
+
+  const handleSearch = (ev) => {
+    const { value } = ev.target;
+    ev.preventDefault();
+    // let pattern = new RegExp(searchTerm, 'gi');
+    setSearchTerm(() => {
+      return value;
+    });
+    const filteredSearch = puszafalatok.filter(
+      ({ title, recipe: { name, category }, origin }) =>
+        title.toLowerCase().includes(value.toLowerCase()) ||
+        name.toLowerCase().includes(value.toLowerCase()) ||
+        origin.toLowerCase().includes(value.toLowerCase()) ||
+        category.name.toLowerCase().includes(value.toLowerCase())
+    );
+    // const highlighted = filteredSearch.map((pf) => {
+    //   let matchedTitle = pf.title.replace(
+    //     pattern,
+    //     (match) => `<mark>${match}</mark>`
+    //   );
+    //   return {
+    //     ...pf,
+    //     title: matchedTitle,
+    //   };
+    // });
+    setFiltered(() => {
+      return filteredSearch;
+    });
+  };
 
   return (
     <>
@@ -27,6 +59,23 @@ const Receptek = ({ data, location }) => {
           <button disabled>{data.recipesPage.dessertsButtonText}</button>
           <button disabled>{data.recipesPage.mainCoursesButtonText}</button>
         </div>
+        <div>
+          <input
+            type='text'
+            value={searchTerm}
+            onChange={handleSearch}
+            placeholder='Keress egy puszafalatra, vagy receptre...'
+            style={{
+              padding: 10,
+              paddingLeft: 16,
+              marginBottom: 16,
+              width: 400,
+              fontSize: 18,
+              borderRadius: 6,
+              border: '1px solid hsla(0, 0%, 0%, 0.3)',
+            }}
+          />
+        </div>
         <div
           style={{
             display: 'grid',
@@ -36,7 +85,7 @@ const Receptek = ({ data, location }) => {
             margin: '0 0 2rem 0',
           }}
         >
-          {puszafalatok.map(
+          {filtered.map(
             ({
               _id,
               title,
@@ -51,13 +100,14 @@ const Receptek = ({ data, location }) => {
                 <article
                   style={{
                     padding: 20,
-                    border: '1px solid',
                     borderRadius: 12,
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
                     gap: 4,
+                    backgroundColor: '#fff',
+                    boxShadow: '0px 4px 4px 0px hsla(0, 0%, 0%, 0.25)',
                   }}
                 >
                   <h3>
@@ -109,6 +159,12 @@ export const query = graphql`
           current
         }
         title {
+          _type
+          hu
+          en
+          sk
+        }
+        origin {
           _type
           hu
           en
