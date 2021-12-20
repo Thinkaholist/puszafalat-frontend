@@ -16,15 +16,19 @@ const Receptek = ({ data, location }) => {
   console.log({ puszafalatok });
   const { pathname } = location;
   const [searchTerm, setSearchTerm] = useState('');
-  const [filtered, setFiltered] = useState(puszafalatok);
+  const [filtered, setFiltered] = useState(
+    puszafalatok.map((pf) => {
+      return {
+        ...pf,
+        title: `<h3>${pf.title}</h3>`,
+      };
+    })
+  );
 
   const handleSearch = (ev) => {
     const { value } = ev.target;
     ev.preventDefault();
-    // let pattern = new RegExp(searchTerm, 'gi');
-    setSearchTerm(() => {
-      return value;
-    });
+    let pattern = new RegExp(searchTerm, 'gi');
     const filteredSearch = puszafalatok.filter(
       ({ title, recipe: { name, category }, origin }) =>
         title.toLowerCase().includes(value.toLowerCase()) ||
@@ -32,20 +36,41 @@ const Receptek = ({ data, location }) => {
         origin.toLowerCase().includes(value.toLowerCase()) ||
         category.name.toLowerCase().includes(value.toLowerCase())
     );
-    // const highlighted = filteredSearch.map((pf) => {
-    //   let matchedTitle = pf.title.replace(
-    //     pattern,
-    //     (match) => `<mark>${match}</mark>`
-    //   );
-    //   return {
-    //     ...pf,
-    //     title: matchedTitle,
-    //   };
-    // });
+
+    console.log({ filteredSearch });
+
+    const highlighted =
+      searchTerm === ''
+        ? filteredSearch.map((pf) => {
+            return {
+              ...pf,
+              title: `<h3>${pf.title}</h3>`,
+            };
+          })
+        : filteredSearch
+            .map((pf) => {
+              return {
+                ...pf,
+                title: `<h3>${pf.title}</h3>`,
+              };
+            })
+            .map((pf) => {
+              let matchedTitle = pf.title.replace(
+                pattern,
+                (match) => `<mark>${match}</mark>`
+              );
+              return {
+                ...pf,
+                title: matchedTitle,
+              };
+            });
     setFiltered(() => {
-      return filteredSearch;
+      return highlighted;
     });
   };
+
+  console.log({ filtered });
+  console.log({ searchTerm });
 
   return (
     <>
@@ -63,11 +88,14 @@ const Receptek = ({ data, location }) => {
           <input
             type='text'
             value={searchTerm}
-            onChange={handleSearch}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyUp={handleSearch}
             placeholder='Keress egy puszafalatra, vagy receptre...'
             style={{
               padding: 10,
               paddingLeft: 16,
+              display: 'block',
+              margin: '0 auto',
               marginBottom: 16,
               width: 400,
               maxWidth: '100%',
@@ -76,6 +104,9 @@ const Receptek = ({ data, location }) => {
               border: '1px solid hsla(0, 0%, 0%, 0.3)',
             }}
           />
+          <h2 style={{ textAlign: 'center', marginBottom: '1rem' }}>
+            {filtered.length || `Nothing found`}
+          </h2>
         </div>
         <div
           style={{
@@ -111,9 +142,7 @@ const Receptek = ({ data, location }) => {
                     boxShadow: '0px 4px 4px 0px hsla(0, 0%, 0%, 0.25)',
                   }}
                 >
-                  <h3>
-                    {title} ({name})
-                  </h3>
+                  <div dangerouslySetInnerHTML={{ __html: title }} />
                   <Img
                     {...illustration.image}
                     alt={illustration.altText}
