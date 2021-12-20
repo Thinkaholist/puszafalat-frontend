@@ -4,6 +4,7 @@ import Img from 'gatsby-plugin-sanity-image';
 import { graphql, Link } from 'gatsby';
 import localize from '../components/localize';
 import Layout from '../components/Layout';
+import { ContainerStyles } from '../styles/ContainerStyles';
 
 const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
   console.log({ location });
@@ -22,76 +23,159 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
         menuItemText={data.header.recipesMenuItemText}
         disclaimerText={data.footer.disclaimerText}
       >
-        <div
-          style={{
-            display: 'flex',
-            gap: '1rem',
-            justifyContent: 'space-between',
-          }}
-        >
-          {data.previous && (
-            <Link
-              to={`${locale === '' ? '' : `/${locale}`}/puszafalat/${
-                data.previous.slug.current
-              }`}
-            >
-              &lt;- {data.previous.title}
-            </Link>
-          )}
-          {data.next && (
-            <Link
-              to={`${locale === '' ? '' : `/${locale}`}/puszafalat/${
-                data.next.slug.current
-              }`}
-            >
-              {data.next.title} -&gt;
-            </Link>
-          )}
-        </div>
-        <h1>{data.puszafalat.title}</h1>
-        <div style={{ width: 300, marginTop: '1rem' }}>
-          <Img
-            {...data.puszafalat.illustration.image}
-            alt={data.puszafalat.illustration.altText}
-            width={800}
-            style={{ width: '100%' }}
+        <ContainerStyles>
+          <div
+            style={{
+              display: 'flex',
+              gap: '1rem',
+              justifyContent: 'space-between',
+            }}
+          >
+            {data.previous && (
+              <Link
+                to={`${locale === '' ? '' : `/${locale}`}/puszafalat/${
+                  data.previous.slug.current
+                }`}
+              >
+                &lt;- {data.previous.title}
+              </Link>
+            )}
+            {data.next && (
+              <Link
+                to={`${locale === '' ? '' : `/${locale}`}/puszafalat/${
+                  data.next.slug.current
+                }`}
+              >
+                {data.next.title} -&gt;
+              </Link>
+            )}
+          </div>
+        </ContainerStyles>
+        <br />
+        <br />
+        <div style={{ position: 'relative', margin: '2rem 0' }}>
+          <hr
+            style={{
+              border: 'none',
+              height: 2,
+              backgroundColor: 'var(--clr-black)',
+            }}
           />
+          <h2
+            style={{
+              transform: 'translate(-50%, -50%)',
+              backgroundColor: 'var(--clr-background)',
+              width: 'max-content',
+              padding: '0 1rem',
+              position: 'absolute',
+              left: '50%',
+              textTransform: 'uppercase',
+              fontWeight: 300,
+              fontSize: 24,
+            }}
+          >
+            {data.page.storyDividerText}
+          </h2>
         </div>
-        <p>{data.puszafalat.story}</p>
+        <ContainerStyles>
+          <h1>{data.puszafalat.title}</h1>
+          <div style={{ margin: '1rem 0' }}>
+            <Img
+              {...data.puszafalat.illustration.image}
+              alt={data.puszafalat.illustration.altText}
+              width={800}
+              style={{ width: '100%' }}
+            />
+          </div>
+          <p>{data.puszafalat.story}</p>
+        </ContainerStyles>
         <br />
-        <hr />
-        <br />
-        <h2>{data.puszafalat.recipe.name}</h2>
-        <div
-          style={{
-            margin: '1rem 0',
-            fontFamily: 'Adelle',
-            fontSize: 18,
-            fontWeight: 700,
-            fontStyle: 'italic',
-          }}
-        >
-          {lineBreakedIngredients}
+        <div style={{ position: 'relative', margin: '2rem 0' }}>
+          <hr
+            style={{
+              border: 'none',
+              height: 2,
+              backgroundColor: 'var(--clr-black)',
+            }}
+          />
+          <h2
+            style={{
+              transform: 'translate(-50%, -50%)',
+              backgroundColor: 'var(--clr-background)',
+              width: 'max-content',
+              padding: '0 1rem',
+              position: 'absolute',
+              left: '50%',
+              textTransform: 'uppercase',
+              fontWeight: 300,
+              fontSize: 24,
+            }}
+          >
+            {data.page.recipeDividerText}
+          </h2>
         </div>
-        <p style={{ fontFamily: 'Adelle', fontSize: 16, fontWeight: 400 }}>
-          {data.puszafalat.recipe.making}
-        </p>
         <br />
-        <hr />
-        <h2
-          style={{
-            margin: '1rem 0',
-            fontWeight: 800,
-            fontSize: 18,
-            textAlign: 'center',
-          }}
-        >
-          {data.puszafalat.song.title}
-        </h2>
-        <div style={{ textAlign: 'center' }}>{lineBreakedLyrics}</div>
-        <br />
-        <hr />
-        <br />
+        <ContainerStyles>
+          <h2>{data.puszafalat.recipe.name}</h2>
+          <div
+            style={{
+              margin: '1rem 0',
+              fontFamily: 'Adelle',
+              fontSize: 18,
+              fontWeight: 700,
+              fontStyle: 'italic',
+            }}
+          >
+            {lineBreakedIngredients}
+          </div>
+          <p style={{ fontFamily: 'Adelle', fontSize: 16, fontWeight: 400 }}>
+            {data.puszafalat.recipe.making}
+          </p>
+          <br />
+        </ContainerStyles>
+        <div style={{ position: 'relative', margin: '2rem 0' }}>
+          <hr
+            style={{
+              border: 'none',
+              height: 2,
+              backgroundColor: 'var(--clr-black)',
+            }}
+          />
+          <h2
+            style={{
+              transform: 'translate(-50%, -50%)',
+              backgroundColor: 'var(--clr-background)',
+              width: 'max-content',
+              padding: '0 1rem',
+              position: 'absolute',
+              left: '50%',
+              textTransform: 'uppercase',
+              fontWeight: 300,
+              fontSize: 24,
+            }}
+          >
+            {data.page.songDividerText}
+          </h2>
+        </div>
+        <ContainerStyles>
+          <h2
+            style={{
+              margin: '1rem 0',
+              fontWeight: 800,
+              fontSize: 18,
+              textAlign: 'center',
+            }}
+          >
+            {data.puszafalat.song.title}
+          </h2>
+          <div style={{ textAlign: 'center' }}>{lineBreakedLyrics}</div>
+          <br />
+          <Img
+            {...data.page.illustration.image}
+            alt={data.page.illustration.altText}
+          />
+          <br />
+        </ContainerStyles>
       </Layout>
     </>
   );
@@ -179,6 +263,32 @@ export const query = graphql`
         hu
         en
         sk
+      }
+    }
+    page: sanityPuszafalatPage(_id: { eq: "puszafalatPage" }) {
+      storyDividerText {
+        _type
+        en
+        hu
+        sk
+      }
+      recipeDividerText {
+        _type
+        en
+        hu
+        sk
+      }
+      songDividerText {
+        _type
+        en
+        hu
+        sk
+      }
+      illustration {
+        altText
+        image {
+          ...ImageWithPreview
+        }
       }
     }
     header: sanityHeaderPage(_id: { eq: "headerPage" }) {

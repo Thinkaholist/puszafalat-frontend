@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import GlobalStyles from '../styles/GlobalStyles';
 import Typography from '../styles/Typography';
 import Header from './Header';
-import { ContainerStyles } from '../styles/ContainerStyles';
 
 const Wrapper = styled.div`
   display: flex;
@@ -11,7 +10,9 @@ const Wrapper = styled.div`
   min-height: 100%;
 `;
 
-const MainContent = styled.main``;
+const MainContent = styled.main`
+  padding: 1rem 0;
+`;
 
 export default function Layout({
   location,
@@ -25,9 +26,7 @@ export default function Layout({
         <Typography />
         <GlobalStyles />
         <Header location={location} menuItemText={menuItemText} />
-        <MainContent>
-          <ContainerStyles>{children}</ContainerStyles>
-        </MainContent>
+        <MainContent>{children}</MainContent>
         <footer
           style={{
             marginTop: 'auto',

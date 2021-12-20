@@ -4,6 +4,7 @@ import Img from 'gatsby-plugin-sanity-image';
 import styled from 'styled-components';
 import localize from '../components/localize';
 import Layout from '../components/Layout';
+import { ContainerStyles } from '../styles/ContainerStyles';
 
 const LinkStyles = styled(Link)`
   display: block;
@@ -22,57 +23,60 @@ const Receptek = ({ data, location }) => {
         menuItemText={data.header.recipesMenuItemText}
         disclaimerText={data.footer.disclaimerText}
       >
-        <div style={{ marginBottom: 40 }}>
-          <button disabled>{data.recipesPage.appetizersButtonText}</button>
-          <button disabled>{data.recipesPage.dessertsButtonText}</button>
-          <button disabled>{data.recipesPage.mainCoursesButtonText}</button>
-        </div>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns:
-              'repeat(auto-fill, minmax(min(227px, 100%), 1fr))',
-            gap: 20,
-            margin: '0 0 2rem 0',
-          }}
-        >
-          {puszafalatok.map(
-            ({
-              _id,
-              title,
-              slug: { current },
-              illustration,
-              recipe: { category, name },
-            }) => (
-              <LinkStyles
-                key={_id}
-                to={`${getLocale(pathname)}/puszafalat/${current}`}
-              >
-                <article
-                  style={{
-                    padding: 20,
-                    border: '1px solid',
-                    borderRadius: 12,
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    gap: 4,
-                  }}
+        <ContainerStyles>
+          <div style={{ marginBottom: 40 }}>
+            <button disabled>{data.recipesPage.appetizersButtonText}</button>
+            <button disabled>{data.recipesPage.dessertsButtonText}</button>
+            <button disabled>{data.recipesPage.mainCoursesButtonText}</button>
+          </div>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns:
+                'repeat(auto-fill, minmax(min(227px, 100%), 1fr))',
+              gap: 20,
+              margin: '0 0 2rem 0',
+            }}
+          >
+            {puszafalatok.map(
+              ({
+                _id,
+                title,
+                slug: { current },
+                illustration,
+                recipe: { category, name },
+              }) => (
+                <LinkStyles
+                  key={_id}
+                  to={`${getLocale(pathname)}/puszafalat/${current}`}
                 >
-                  <h3>
-                    {title} ({name})
-                  </h3>
-                  <Img
-                    {...illustration.image}
-                    alt={illustration.altText}
-                    style={{ width: 175 }}
-                  />
-                </article>
-              </LinkStyles>
-            )
-          )}
-        </div>
+                  <article
+                    style={{
+                      padding: 20,
+                      border: '1px solid',
+                      borderRadius: 12,
+                      height: '100%',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      gap: 4,
+                      backgroundColor: 'white',
+                    }}
+                  >
+                    <h3>
+                      {title} ({name})
+                    </h3>
+                    <Img
+                      {...illustration.image}
+                      alt={illustration.altText}
+                      style={{ width: 175 }}
+                    />
+                  </article>
+                </LinkStyles>
+              )
+            )}
+          </div>
+        </ContainerStyles>
       </Layout>
     </>
   );
@@ -102,7 +106,7 @@ export const query = graphql`
         sk
       }
     }
-    allSanityPuszafalat {
+    allSanityPuszafalat(sort: { fields: rank, order: ASC }) {
       nodes {
         _id
         slug {
