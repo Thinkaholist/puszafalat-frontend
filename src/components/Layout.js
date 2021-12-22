@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import GlobalStyles from '../styles/GlobalStyles';
-import Typography from '../styles/Typography';
 import Header from './Header';
 
 const Wrapper = styled.div`
@@ -23,8 +21,6 @@ export default function Layout({
   return (
     <>
       <Wrapper>
-        <Typography />
-        <GlobalStyles />
         <Header location={location} menuItemText={menuItemText} />
         <MainContent>{children}</MainContent>
         <footer
