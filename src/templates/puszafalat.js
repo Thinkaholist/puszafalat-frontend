@@ -79,6 +79,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
         </div>
         <ContainerStyles>
           <h1>{data.puszafalat.title}</h1>
+          <p>{data.puszafalat.story}</p>
           <div style={{ margin: '1rem 0' }}>
             <Img
               {...data.puszafalat.illustration.image}
@@ -87,7 +88,6 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
               style={{ width: '100%' }}
             />
           </div>
-          <p>{data.puszafalat.story}</p>
         </ContainerStyles>
         <br />
         <div style={{ position: 'relative', margin: '2rem 0' }}>
