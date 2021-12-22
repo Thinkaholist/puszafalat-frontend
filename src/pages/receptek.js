@@ -47,30 +47,20 @@ const Receptek = ({ data, location }) => {
               title: `<h3>${pf.title}</h3>`,
             };
           })
-        : filteredSearch
-            .map((pf) => {
-              return {
-                ...pf,
-                title: `<h3>${pf.title}</h3>`,
-              };
-            })
-            .map((pf) => {
-              let matchedTitle = pf.title.replace(
-                pattern,
-                (match) => `<mark>${match}</mark>`
-              );
-              return {
-                ...pf,
-                title: matchedTitle,
-              };
-            });
+        : filteredSearch.map((pf) => {
+            let matchedTitle = pf.title.replace(
+              pattern,
+              (match) => `<mark>${match}</mark>`
+            );
+            return {
+              ...pf,
+              title: `<h3>${matchedTitle}</h3>`,
+            };
+          });
     setFiltered(() => {
       return highlighted;
     });
   };
-
-  console.log({ filtered });
-  console.log({ searchTerm });
 
   return (
     <>
