@@ -20,7 +20,9 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
     recipeName,
     recipeNote,
     making,
+    foodType: { name: foodType },
   } = data.puszafalat;
+
   return (
     <>
       <Layout
@@ -121,6 +123,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
         </div>
         <br />
         <ContainerStyles>
+          <p>{foodType}</p>
           <h2>
             {recipeName} {recipeNote && <span>({recipeNote})</span>}
           </h2>
@@ -238,6 +241,14 @@ export const query = graphql`
         hu
         en
         sk
+      }
+      foodType {
+        name {
+          _type
+          hu
+          en
+          sk
+        }
       }
       songTitle
       songLyrics
