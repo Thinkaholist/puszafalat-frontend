@@ -42,72 +42,9 @@ module.exports.createPages = async ({ graphql, actions }) => {
     query {
       allSanityPuszafalat(sort: { fields: rank, order: ASC }) {
         nodes {
-          id
-          title {
-            _key
-            en
-            hu
-            sk
-          }
-          story {
-            _type
-            en
-            hu
-            sk
-          }
-          recipe {
-            name {
-              _type
-              en
-              hu
-              sk
-            }
-            ingredients {
-              _type
-              en
-              hu
-              sk
-            }
-            making {
-              _type
-              en
-              hu
-              sk
-            }
-            category {
-              name {
-                _type
-                en
-                hu
-                sk
-              }
-            }
-          }
           slug {
             current
           }
-          song {
-            title {
-              _type
-              en
-              hu
-              sk
-            }
-            lyrics {
-              _type
-              en
-              hu
-              sk
-            }
-            bandcampTrack
-          }
-          origin {
-            _type
-            en
-            sk
-            hu
-          }
-          rank
         }
       }
     }

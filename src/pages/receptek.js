@@ -38,43 +38,45 @@ const Receptek = ({ data, location }) => {
               margin: '0 0 2rem 0',
             }}
           >
-            {puszafalatok.map(
-              ({
-                _id,
-                title,
-                slug: { current },
-                illustration,
-                recipe: { category, name },
-              }) => (
-                <LinkStyles
-                  key={_id}
-                  to={`${getLocale(pathname)}/puszafalat/${current}`}
-                >
-                  <article
-                    style={{
-                      padding: 20,
-                      border: '1px solid',
-                      borderRadius: 12,
-                      height: '100%',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between',
-                      gap: 4,
-                      backgroundColor: 'white',
-                    }}
+            {!puszafalatok.length && <h4>Nem találtunk Puszafalatot!</h4>}
+            {puszafalatok.length > 0 &&
+              puszafalatok.map(
+                ({
+                  _id,
+                  title,
+                  slug: { current },
+                  illustration,
+                  recipeName,
+                }) => (
+                  <LinkStyles
+                    key={_id}
+                    to={`${getLocale(pathname)}/puszafalat/${current}`}
                   >
-                    <h3>
-                      {title} ({name})
-                    </h3>
-                    <Img
-                      {...illustration.image}
-                      alt={illustration.altText}
-                      style={{ width: 175 }}
-                    />
-                  </article>
-                </LinkStyles>
-              )
-            )}
+                    <article
+                      style={{
+                        padding: 20,
+                        border: '1px solid',
+                        borderRadius: 12,
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                        gap: 4,
+                        backgroundColor: 'white',
+                      }}
+                    >
+                      <h3>
+                        {title} ({recipeName})
+                      </h3>
+                      <Img
+                        {...illustration.image}
+                        alt={illustration.altText}
+                        style={{ width: 175 }}
+                      />
+                    </article>
+                  </LinkStyles>
+                )
+              )}
           </div>
         </ContainerStyles>
       </Layout>
@@ -109,13 +111,23 @@ export const query = graphql`
     allSanityPuszafalat(sort: { fields: rank, order: ASC }) {
       nodes {
         _id
-        slug {
-          current
-        }
         title {
           _type
-          hu
           en
+          hu
+          sk
+        }
+        rank
+        story {
+          _type
+          en
+          hu
+          sk
+        }
+        origin {
+          _type
+          en
+          hu
           sk
         }
         illustration {
@@ -124,21 +136,14 @@ export const query = graphql`
             ...ImageWithPreview
           }
         }
-        recipe {
-          name {
-            _type
-            hu
-            en
-            sk
-          }
-          category {
-            name {
-              _type
-              hu
-              en
-              sk
-            }
-          }
+        recipeName {
+          _type
+          en
+          hu
+          sk
+        }
+        slug {
+          current
         }
       }
     }

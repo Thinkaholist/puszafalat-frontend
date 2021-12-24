@@ -7,15 +7,20 @@ import Layout from '../components/Layout';
 import { ContainerStyles } from '../styles/ContainerStyles';
 
 const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
-  console.log({ location });
-  console.log({ locale });
-  console.log({ data });
-  const ingredients = data.puszafalat.recipe.ingredients;
+  const ingredients = data.puszafalat.ingredients;
   const lineBreakedIngredients = ingredients
     .split('\n')
     .map((row) => <p>{row}</p>);
-  const lyrics = data.puszafalat.song.lyrics;
+  const lyrics = data.puszafalat.songLyrics;
   const lineBreakedLyrics = lyrics.split('\n').map((row) => <p>{row}</p>);
+  const {
+    title,
+    story,
+    illustration: { image, altText },
+    recipeName,
+    recipeNote,
+    making,
+  } = data.puszafalat;
   return (
     <>
       <Layout
@@ -78,12 +83,12 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
           </h2>
         </div>
         <ContainerStyles>
-          <h1>{data.puszafalat.title}</h1>
-          <p>{data.puszafalat.story}</p>
+          <h1>{title}</h1>
+          <p>{story}</p>
           <div style={{ margin: '1rem 0' }}>
             <Img
-              {...data.puszafalat.illustration.image}
-              alt={data.puszafalat.illustration.altText}
+              {...image}
+              alt={altText}
               width={800}
               style={{ width: '100%' }}
             />
@@ -116,7 +121,9 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
         </div>
         <br />
         <ContainerStyles>
-          <h2>{data.puszafalat.recipe.name}</h2>
+          <h2>
+            {recipeName} {recipeNote && <span>({recipeNote})</span>}
+          </h2>
           <div
             style={{
               margin: '1rem 0',
@@ -129,7 +136,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
             {lineBreakedIngredients}
           </div>
           <p style={{ fontFamily: 'Adelle', fontSize: 16, fontWeight: 400 }}>
-            {data.puszafalat.recipe.making}
+            {making}
           </p>
           <br />
         </ContainerStyles>
@@ -166,7 +173,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
               textAlign: 'center',
             }}
           >
-            {data.puszafalat.song.title}
+            {data.puszafalat.songTitle}
           </h2>
           <div style={{ textAlign: 'center' }}>{lineBreakedLyrics}</div>
           <br />
@@ -208,40 +215,32 @@ export const query = graphql`
           ...ImageWithPreview
         }
       }
-      recipe {
-        name {
-          _type
-          hu
-          en
-          sk
-        }
-        ingredients {
-          _type
-          hu
-          en
-          sk
-        }
-        making {
-          _type
-          hu
-          en
-          sk
-        }
+      recipeName {
+        _type
+        hu
+        en
+        sk
       }
-      song {
-        title {
-          _type
-          hu
-          en
-          sk
-        }
-        lyrics {
-          _type
-          hu
-          en
-          sk
-        }
+      recipeNote {
+        _type
+        hu
+        en
+        sk
       }
+      ingredients {
+        _type
+        hu
+        en
+        sk
+      }
+      making {
+        _type
+        hu
+        en
+        sk
+      }
+      songTitle
+      songLyrics
     }
     previous: sanityPuszafalat(slug: { current: { eq: $previousSlug } }) {
       slug {
