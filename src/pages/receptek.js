@@ -24,6 +24,7 @@ const AllRadioButton = styled.label`
   opacity: 1;
   text-decoration: underline;
   color: var(--clr-blue);
+  cursor: pointer;
 `;
 
 const Receptek = ({ data, location }) => {

@@ -37,7 +37,6 @@ export default function DesktopLangugeChanger({ location: { pathname } }) {
     }
   }, [pathname]);
 
-  console.log({ selectedLanguage });
   return (
     <>
       <Wrapper>
