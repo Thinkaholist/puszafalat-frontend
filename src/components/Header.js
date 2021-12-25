@@ -17,14 +17,25 @@ const HeaderStyles = styled.header`
 const HeaderContainerStyles = styled(ContainerStyles)`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  & > * {
+    flex: 1;
+    display: flex;
+  }
 `;
 
-const HamburgerStyles = styled(ImMenu)`
-  /* @media ${QUERIES.tabletAndUp} { */
-  visibility: hidden;
-  /* } */
+const HamburgerStyles = styled.div`
+  justify-content: flex-end;
 `;
+
+const MenuItemLink = styled(Link)`
+  justify-content: flex-end;
+`;
+
+const LogoLink = styled(Link)`
+  justify-content: center;
+`;
+
+const DesktopLanguageChangerStyles = styled(DesktopLangugeChanger)``;
 
 export default function Header({ location, menuItemText }) {
   const { pathname } = location;
@@ -33,15 +44,33 @@ export default function Header({ location, menuItemText }) {
     <>
       <HeaderStyles>
         <HeaderContainerStyles>
-          <MobileLangugeChanger />
-          <DesktopLangugeChanger location={location} />
-          <Link to={getUrl(pathname)}>
+          <DesktopLanguageChangerStyles location={location} />
+          {/* <MobileLangugeChanger /> */}
+          <LogoLink to={getUrl(pathname)}>
             <Logo />
-          </Link>
-          <HamburgerStyles size={30} onClick={() => console.log('open menu')} />
-          <Link to={`${getReceptekUrl(pathname)}/receptek`}>
+          </LogoLink>
+          <MenuItemLink to={`${getReceptekUrl(pathname)}/receptek`}>
             {menuItemText}
-          </Link>
+          </MenuItemLink>
+          {/* <HamburgerStyles>
+            <ImMenu size={30} onClick={() => console.log('open menu')} />
+          </HamburgerStyles> */}
+          {/* <div style={{ justifyContent: 'flex-start' }}>
+            <MobileLangugeChanger />
+            <DesktopLanguageChangerStyles location={location} />
+          </div>
+          <LogoLink to={getUrl(pathname)}>
+            <Logo />
+          </LogoLink>
+          <div style={{ flex: 1, display: 'flex' }}>
+            <HamburgerStyles
+              size={30}
+              onClick={() => console.log('open menu')}
+            />
+            <MenuItemLink to={`${getReceptekUrl(pathname)}/receptek`}>
+              {menuItemText}
+            </MenuItemLink>
+          </div> */}
         </HeaderContainerStyles>
       </HeaderStyles>
     </>

@@ -73,6 +73,8 @@ const GlobalStyles = createGlobalStyle`
         --clr-pink: hsla(336 67% 67% / 1);
         
         --font-family: 'Agrandir',-apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+
+        overflow-y: scroll;
     }
     
 
