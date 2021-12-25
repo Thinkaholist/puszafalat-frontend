@@ -4,8 +4,10 @@ import Img from 'gatsby-plugin-sanity-image';
 import Layout from '../components/Layout';
 import localize from '../components/localize';
 import { ContainerStyles } from '../styles/ContainerStyles';
+import BandCampParser from '../components/BandCampParser';
 
 const IndexPage = ({ data, location }) => {
+  const { albumEmbedCode } = data.homePage;
   return (
     <>
       <Layout
@@ -35,6 +37,9 @@ const IndexPage = ({ data, location }) => {
             </h1>
             <p>{data.homePage.subHeaderText}</p>
             <p>{data.homePage.bandCampText}</p>
+          </div>
+          <div style={{ margin: '16px auto', maxWidth: 450 }}>
+            <BandCampParser albumCode={albumEmbedCode} />
           </div>
         </ContainerStyles>
       </Layout>
@@ -71,6 +76,7 @@ export const query = graphql`
           ...ImageWithPreview
         }
       }
+      albumEmbedCode
     }
     header: sanityHeaderPage(_id: { eq: "headerPage" }) {
       recipesMenuItemText {

@@ -14,3 +14,9 @@ export const QUERIES = {
     (min-width: ${BREAKPOINTS.tabletMin / 16}rem) and
     (max-width: ${(BREAKPOINTS.laptopMin - 1) / 16}rem)`,
 };
+
+export const FOOD_COLORS = {
+  1: 'var(--clr-blue)',
+  2: 'var(--clr-green)',
+  3: 'var(--clr-orange)',
+};
