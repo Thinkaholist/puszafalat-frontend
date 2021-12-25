@@ -5,14 +5,9 @@ import { graphql, Link } from 'gatsby';
 import localize from '../components/localize';
 import Layout from '../components/Layout';
 import { ContainerStyles } from '../styles/ContainerStyles';
+import { lineBreaker } from '../utils/lineBreaker';
 
 const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
-  const ingredients = data.puszafalat.ingredients;
-  const lineBreakedIngredients = ingredients
-    .split('\n')
-    .map((row) => <p>{row}</p>);
-  const lyrics = data.puszafalat.songLyrics;
-  const lineBreakedLyrics = lyrics.split('\n').map((row) => <p>{row}</p>);
   const {
     title,
     story,
@@ -21,7 +16,12 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
     recipeNote,
     making,
     foodType: { name: foodType },
+    ingredients,
+    songLyrics,
   } = data.puszafalat;
+  const lineBreakedIngredients = lineBreaker(ingredients);
+  const lineBreakedLyrics = lineBreaker(songLyrics);
+  const lineBreakedStory = lineBreaker(story);
 
   return (
     <>
@@ -85,14 +85,16 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
           </h2>
         </div>
         <ContainerStyles>
-          <h1>{title}</h1>
-          <p>{story}</p>
+          <h1 style={{ marginBottom: 19 }}>{title}</h1>
+          <div style={{ marginBottom: 19 }}>{lineBreakedStory}</div>
           <div style={{ margin: '1rem 0' }}>
             <Img
               {...image}
               alt={altText}
               width={800}
-              style={{ width: '100%' }}
+              style={{
+                width: '100%',
+              }}
             />
           </div>
         </ContainerStyles>

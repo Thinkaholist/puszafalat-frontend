@@ -55,7 +55,8 @@ const Receptek = ({ data, location }) => {
                     <article
                       style={{
                         padding: 20,
-                        border: '1px solid',
+                        // border: '1px solid',
+                        boxShadow: '1px 1px 5px 1px rgba(0, 0, 0, 1)',
                         borderRadius: 12,
                         height: '100%',
                         display: 'flex',
