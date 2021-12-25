@@ -13,11 +13,11 @@ const RadioStyles = styled.input`
 
 const ButtonStyles = styled.label`
   display: block;
-  width: 124px;
+  width: 180px;
   text-transform: uppercase;
   text-align: center;
   font-weight: 300;
-  font-size: 13px;
+  font-size: 16px;
   padding: 6px 10px 4px;
   border-radius: 16px;
   cursor: pointer;
