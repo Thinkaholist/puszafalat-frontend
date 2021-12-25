@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-plugin-sanity-image';
 import styled from 'styled-components';
 import localize from '../components/localize';
 import Layout from '../components/Layout';
 import { ContainerStyles } from '../styles/ContainerStyles';
+import RadioButton from '../components/RadioButton';
 
 const LinkStyles = styled(Link)`
   display: block;
@@ -12,9 +13,33 @@ const LinkStyles = styled(Link)`
   color: inherit;
 `;
 
+const AllRadioInput = styled.input`
+  display: none;
+  &:checked + label {
+    opacity: 0;
+  }
+`;
+
+const AllRadioButton = styled.label`
+  opacity: 1;
+  text-decoration: underline;
+  color: var(--clr-blue);
+`;
+
 const Receptek = ({ data, location }) => {
-  const puszafalatok = data.allSanityPuszafalat.nodes;
   const { pathname } = location;
+  const { appetizersButtonText, dessertsButtonText, mainCoursesButtonText } =
+    data.recipesPage;
+  const puszafalatok = data.allSanityPuszafalat.nodes;
+  const [filtered, setFiltered] = useState(puszafalatok);
+
+  function onChangeValue({ target: { value } }) {
+    if (value === '') return setFiltered(() => puszafalatok);
+    const updated = puszafalatok.filter(
+      (e) => e.foodType.serialNumber.toString() === value
+    );
+    setFiltered(() => updated);
+  }
 
   return (
     <>
@@ -24,10 +49,46 @@ const Receptek = ({ data, location }) => {
         disclaimerText={data.footer.disclaimerText}
       >
         <ContainerStyles>
-          <div style={{ marginBottom: 40 }}>
-            <button disabled>{data.recipesPage.appetizersButtonText}</button>
-            <button disabled>{data.recipesPage.dessertsButtonText}</button>
-            <button disabled>{data.recipesPage.mainCoursesButtonText}</button>
+          <div
+            style={{
+              margin: '1rem auto',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 10,
+              alignItems: 'center',
+            }}
+            onChange={onChangeValue}
+          >
+            <RadioButton
+              id='appetizer'
+              color='var(--clr-blue)'
+              label={appetizersButtonText}
+              value={1}
+            />
+            <RadioButton
+              id='mainCourse'
+              color='var(--clr-orange)'
+              label={mainCoursesButtonText}
+              value={2}
+            />
+            <RadioButton
+              id='dessert'
+              color='var(--clr-green)'
+              label={dessertsButtonText}
+              value={3}
+            />
+            <div>
+              <AllRadioInput
+                id='allRecipe'
+                type='radio'
+                name='courseTypes'
+                value=''
+                defaultChecked
+              />
+              <AllRadioButton htmlFor='allRecipe'>
+                All recipe (should come from Sanity)
+              </AllRadioButton>
+            </div>
           </div>
           <div
             style={{
@@ -38,9 +99,13 @@ const Receptek = ({ data, location }) => {
               margin: '0 0 2rem 0',
             }}
           >
-            {!puszafalatok.length && <h4>Nem találtunk Puszafalatot!</h4>}
-            {puszafalatok.length > 0 &&
-              puszafalatok.map(
+            {!filtered.length && (
+              <h4 style={{ textAlign: 'center' }}>
+                Nem találtunk Puszafalatot!(Should come from Sanity)
+              </h4>
+            )}
+            {filtered.length > 0 &&
+              filtered.map(
                 ({
                   _id,
                   title,
@@ -145,6 +210,9 @@ export const query = graphql`
         }
         slug {
           current
+        }
+        foodType {
+          serialNumber
         }
       }
     }

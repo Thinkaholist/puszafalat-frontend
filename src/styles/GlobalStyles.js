@@ -66,6 +66,7 @@ const GlobalStyles = createGlobalStyle`
     :root {
         --clr-background: hsla(69 47% 97% / 1);
         --clr-black: hsla(0 0% 18% / 1);
+        --clr-white: hsla(0 0% 100% / 1);
         --clr-blue: hsla(202 69% 56% / 1);
         --clr-green: hsla(138 51% 40% / 1);
         --clr-orange: hsla(15 80% 55% / 1);
