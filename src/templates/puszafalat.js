@@ -6,6 +6,7 @@ import localize from '../components/localize';
 import Layout from '../components/Layout';
 import { ContainerStyles } from '../styles/ContainerStyles';
 import { lineBreaker } from '../utils/lineBreaker';
+import BandCampParser from '../components/BandCampParser';
 
 const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
   const {
@@ -17,6 +18,8 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
     making,
     foodType: { name: foodType },
     ingredients,
+    bandcampTrack,
+    songTitle,
     songLyrics,
   } = data.puszafalat;
   const lineBreakedIngredients = lineBreaker(ingredients);
@@ -170,6 +173,9 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
           </h2>
         </div>
         <ContainerStyles>
+          <div style={{ margin: '50px auto', maxWidth: 550 }}>
+            <BandCampParser trackCode={bandcampTrack} linkColor='336699' />
+          </div>
           <h2
             style={{
               margin: '1rem 0',
@@ -178,7 +184,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
               textAlign: 'center',
             }}
           >
-            {data.puszafalat.songTitle}
+            {songTitle}
           </h2>
           <div style={{ textAlign: 'center' }}>{lineBreakedLyrics}</div>
           <br />
@@ -252,6 +258,7 @@ export const query = graphql`
           sk
         }
       }
+      bandcampTrack
       songTitle
       songLyrics
     }
