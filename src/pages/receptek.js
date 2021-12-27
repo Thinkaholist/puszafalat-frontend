@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
-import { graphql, Link } from 'gatsby';
-import Img from 'gatsby-plugin-sanity-image';
+import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import localize from '../components/localize';
 import Layout from '../components/Layout';
 import { ContainerStyles } from '../styles/ContainerStyles';
 import RadioButton from '../components/RadioButton';
-
-const LinkStyles = styled(Link)`
-  display: block;
-  text-decoration: none;
-  color: inherit;
-`;
+import PuszaCard from '../components/PuszaCard';
 
 const AllRadioInput = styled.input`
   display: none;
@@ -25,6 +19,14 @@ const AllRadioButton = styled.label`
   text-decoration: underline;
   color: var(--clr-blue);
   cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+`;
+
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(227px, 100%), 1fr));
+  gap: 20px;
+  margin: 0 0 2rem 0;
 `;
 
 const Receptek = ({ data, location }) => {
@@ -68,13 +70,13 @@ const Receptek = ({ data, location }) => {
             />
             <RadioButton
               id='mainCourse'
-              color='var(--clr-orange)'
+              color='var(--clr-green)'
               label={mainCoursesButtonText}
               value={2}
             />
             <RadioButton
               id='dessert'
-              color='var(--clr-green)'
+              color='var(--clr-orange)'
               label={dessertsButtonText}
               value={3}
             />
@@ -91,60 +93,21 @@ const Receptek = ({ data, location }) => {
               </AllRadioButton>
             </div>
           </div>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns:
-                'repeat(auto-fill, minmax(min(227px, 100%), 1fr))',
-              gap: 20,
-              margin: '0 0 2rem 0',
-            }}
-          >
+          <GridContainer>
             {!filtered.length && (
               <h4 style={{ textAlign: 'center' }}>
                 Nem találtunk Puszafalatot!(Should come from Sanity)
               </h4>
             )}
             {filtered.length > 0 &&
-              filtered.map(
-                ({
-                  _id,
-                  title,
-                  slug: { current },
-                  illustration,
-                  recipeName,
-                }) => (
-                  <LinkStyles
-                    key={_id}
-                    to={`${getLocale(pathname)}/puszafalat/${current}`}
-                  >
-                    <article
-                      style={{
-                        padding: 20,
-                        // border: '1px solid',
-                        boxShadow: '1px 1px 5px 1px rgba(0, 0, 0, 1)',
-                        borderRadius: 12,
-                        height: '100%',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                        gap: 4,
-                        backgroundColor: 'white',
-                      }}
-                    >
-                      <h3>
-                        {title} ({recipeName})
-                      </h3>
-                      <Img
-                        {...illustration.image}
-                        alt={illustration.altText}
-                        style={{ width: 175 }}
-                      />
-                    </article>
-                  </LinkStyles>
-                )
-              )}
-          </div>
+              filtered.map((puszafalat) => (
+                <PuszaCard
+                  key={puszafalat._id}
+                  {...puszafalat}
+                  pathname={pathname}
+                />
+              ))}
+          </GridContainer>
         </ContainerStyles>
       </Layout>
     </>
@@ -235,19 +198,3 @@ export const query = graphql`
     }
   }
 `;
-
-function getLocale(pathname) {
-  // ->  /
-  // ->  /en
-  // ->  /receptek
-  // ->  /en/receptek
-  // ->  /puszafalat/a-gyuru-hol
-  // ->  /en/puszafalat/a-gyuru-hol
-  if (pathname.startsWith('/en')) {
-    return '/en';
-  } else if (pathname.startsWith('/sk')) {
-    return '/sk';
-  } else {
-    return '';
-  }
-}
