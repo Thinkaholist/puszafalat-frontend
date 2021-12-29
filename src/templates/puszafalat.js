@@ -7,6 +7,7 @@ import Layout from '../components/Layout';
 import { ContainerStyles } from '../styles/ContainerStyles';
 import { lineBreaker } from '../utils/lineBreaker';
 import BandCampParser from '../components/BandCampParser';
+import Recipe from '../components/Recipe';
 
 const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
   const {
@@ -16,7 +17,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
     recipeName,
     recipeNote,
     making,
-    foodType: { name: foodType },
+    foodType: { name: foodType, serialNumber },
     ingredients,
     bandcampTrack,
     songTitle,
@@ -81,7 +82,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
               left: '50%',
               textTransform: 'uppercase',
               fontWeight: 300,
-              fontSize: 24,
+              fontSize: 14,
             }}
           >
             {data.page.storyDividerText}
@@ -120,7 +121,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
               left: '50%',
               textTransform: 'uppercase',
               fontWeight: 300,
-              fontSize: 24,
+              fontSize: 14,
             }}
           >
             {data.page.recipeDividerText}
@@ -128,25 +129,14 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
         </div>
         <br />
         <ContainerStyles>
-          <p>{foodType}</p>
-          <h2>
-            {recipeName} {recipeNote && <span>({recipeNote})</span>}
-          </h2>
-          <div
-            style={{
-              margin: '1rem 0',
-              fontFamily: 'Adelle',
-              fontSize: 18,
-              fontWeight: 700,
-              fontStyle: 'italic',
-            }}
-          >
-            {lineBreakedIngredients}
-          </div>
-          <p style={{ fontFamily: 'Adelle', fontSize: 16, fontWeight: 400 }}>
-            {making}
-          </p>
-          <br />
+          <Recipe
+            foodType={foodType}
+            recipeName={recipeName}
+            recipeNote={recipeNote}
+            ingredients={ingredients}
+            making={making}
+            serialNumber={serialNumber}
+          />
         </ContainerStyles>
         <div style={{ position: 'relative', margin: '2rem 0' }}>
           <hr
@@ -166,7 +156,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
               left: '50%',
               textTransform: 'uppercase',
               fontWeight: 300,
-              fontSize: 24,
+              fontSize: 14,
             }}
           >
             {data.page.songDividerText}
@@ -251,6 +241,7 @@ export const query = graphql`
         sk
       }
       foodType {
+        serialNumber
         name {
           _type
           hu
