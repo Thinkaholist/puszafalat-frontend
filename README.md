@@ -1,4 +1,4 @@
-# Puszafalat
+# Puszafalat - DEVELOPMENT branch
 
 ## Frontend
 
@@ -22,8 +22,10 @@ https://puszafalat-dev.netlify.app
 
 Project:
 https://www.sanity.io/manage/personal/project/6h8tota2
+
 Repo:
 https://github.com/Thinkaholist/puszafalat-sanity
+
 Studio:
 https://puszafalat.sanity.studio/
 
@@ -42,3 +44,5 @@ https://puszafalat.sanity.studio/
 - Use the description field to tell what did you do and insert screenshots
 - Any questions to the task should be in Jira comment thread any questions about the code itself in the PR comment thread on GitHub
 - When the PR is accepted you can merge that into the `development` branch. It should trigger a new build onto the development site. See at the top of this page. After successful build you can see the changes on the developer website
+
+- Before any new feature branch please use `git pull origin development` on your local `development` branch

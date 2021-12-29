@@ -1,4 +1,7 @@
 import * as React from 'react';
+import GlobalStyles from '../styles/GlobalStyles';
+import Typography from '../styles/Typography';
+import { graphql } from 'gatsby';
 
 const mainStyles = {
   height: '100vh',
@@ -7,12 +10,15 @@ const mainStyles = {
   placeContent: 'center',
   textAlign: 'center',
   fontFamily:
-    '-apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif',
+    'Agrandir, -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif',
 };
 
 const IndexPage = () => {
   return (
     <>
+      {/* TODO: Move GlobalStyles & Typography to Layout Component when ready */}
+      <GlobalStyles />
+      <Typography />
       <main style={mainStyles}>
         <h1>Itt a</h1>
         <div
