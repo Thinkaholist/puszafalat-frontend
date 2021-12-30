@@ -65,6 +65,7 @@ const GlobalStyles = createGlobalStyle`
     /* Global CSS Variables */
     :root {
         --clr-background: hsla(69 47% 97% / 1);
+        --clr-background-hover: hsla(69 7% 50% / 1);
         --clr-black: hsla(0 0% 18% / 1);
         --clr-white: hsla(0 0% 100% / 1);
         --clr-blue: hsla(202 69% 56% / 1);
