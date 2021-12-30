@@ -8,6 +8,7 @@ import { ContainerStyles } from '../styles/ContainerStyles';
 import { lineBreaker } from '../utils/lineBreaker';
 import BandCampParser from '../components/BandCampParser';
 import Recipe from '../components/Recipe';
+import Pagination from '../components/Pagination';
 
 const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
   const {
@@ -23,9 +24,15 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
     songTitle,
     songLyrics,
   } = data.puszafalat;
-  const lineBreakedIngredients = lineBreaker(ingredients);
+  const { previous, next } = data;
   const lineBreakedLyrics = lineBreaker(songLyrics);
   const lineBreakedStory = lineBreaker(story);
+  const previousLink =
+    previous &&
+    `${locale === '' ? '' : `/${locale}`}/puszafalat/${previous.slug.current}`;
+  const nextLink =
+    next &&
+    `${locale === '' ? '' : `/${locale}`}/puszafalat/${next.slug.current}`;
 
   return (
     <>
@@ -35,35 +42,13 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
         disclaimerText={data.footer.disclaimerText}
       >
         <ContainerStyles>
-          <div
-            style={{
-              display: 'flex',
-              gap: '1rem',
-              justifyContent: 'space-between',
-            }}
-          >
-            {data.previous && (
-              <Link
-                to={`${locale === '' ? '' : `/${locale}`}/puszafalat/${
-                  data.previous.slug.current
-                }`}
-              >
-                &lt;- {data.previous.title}
-              </Link>
-            )}
-            {data.next && (
-              <Link
-                to={`${locale === '' ? '' : `/${locale}`}/puszafalat/${
-                  data.next.slug.current
-                }`}
-              >
-                {data.next.title} -&gt;
-              </Link>
-            )}
-          </div>
+          <Pagination
+            previous={previous && previous}
+            previousLink={previous && previousLink}
+            next={next && next}
+            nextLink={next && nextLink}
+          />
         </ContainerStyles>
-        <br />
-        <br />
         <div style={{ position: 'relative', margin: '2rem 0' }}>
           <hr
             style={{
@@ -176,7 +161,15 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
           >
             {songTitle}
           </h2>
-          <div style={{ textAlign: 'center' }}>{lineBreakedLyrics}</div>
+          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            {lineBreakedLyrics}
+          </div>
+          <Pagination
+            previous={previous && previous}
+            previousLink={previous && previousLink}
+            next={next && next}
+            nextLink={next && nextLink}
+          />
           <br />
           <Img
             {...data.page.illustration.image}
