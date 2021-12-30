@@ -1,7 +1,6 @@
 import React from 'react';
-import { defaultLang } from '../config';
 import Img from 'gatsby-plugin-sanity-image';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import localize from '../components/localize';
 import Layout from '../components/Layout';
 import { ContainerStyles } from '../styles/ContainerStyles';
@@ -256,6 +255,9 @@ export const query = graphql`
         en
         sk
       }
+      foodType {
+        serialNumber
+      }
     }
     next: sanityPuszafalat(slug: { current: { eq: $nextSlug } }) {
       slug {
@@ -266,6 +268,9 @@ export const query = graphql`
         hu
         en
         sk
+      }
+      foodType {
+        serialNumber
       }
     }
     page: sanityPuszafalatPage(_id: { eq: "puszafalatPage" }) {
