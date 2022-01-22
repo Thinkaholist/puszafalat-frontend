@@ -5,9 +5,9 @@ import localize from '../components/localize';
 import Layout from '../components/Layout';
 import { ContainerStyles } from '../styles/ContainerStyles';
 import { lineBreaker } from '../utils/lineBreaker';
-import BandCampParser from '../components/BandCampParser';
 import Recipe from '../components/Recipe';
 import Pagination from '../components/Pagination';
+import Song from '../components/Song';
 
 const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
   const {
@@ -24,7 +24,6 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
     songLyrics,
   } = data.puszafalat;
   const { previous, next } = data;
-  const lineBreakedLyrics = lineBreaker(songLyrics);
   const lineBreakedStory = lineBreaker(story);
   const previousLink =
     previous &&
@@ -147,34 +146,22 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
           </h2>
         </div>
         <ContainerStyles>
-          <div style={{ margin: '50px auto', maxWidth: 550 }}>
-            <BandCampParser trackCode={bandcampTrack} linkColor='336699' />
-          </div>
-          <h2
-            style={{
-              margin: '1rem 0',
-              fontWeight: 800,
-              fontSize: 18,
-              textAlign: 'center',
-            }}
-          >
-            {songTitle}
-          </h2>
-          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            {lineBreakedLyrics}
-          </div>
+          <Song
+            songTitle={songTitle}
+            songLyrics={songLyrics}
+            bandcampTrack={bandcampTrack}
+          />
           <Pagination
             previous={previous && previous}
             previousLink={previous && previousLink}
             next={next && next}
             nextLink={next && nextLink}
           />
-          <br />
+          <div style={{ marginBottom: '2rem' }} />
           <Img
             {...data.page.illustration.image}
             alt={data.page.illustration.altText}
           />
-          <br />
         </ContainerStyles>
       </Layout>
     </>
