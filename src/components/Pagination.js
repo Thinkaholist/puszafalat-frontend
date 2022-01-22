@@ -35,20 +35,24 @@ const LinkWrapper = styled(Link)`
     }
   }
 
-  @media ${QUERIES.tabletAndUp} {
+  /* @media ${QUERIES.tabletAndUp} {
     min-width: 18ch;
-  }
+  } */
 `;
 
-const PreviousWrapper = styled(LinkWrapper)``;
+const PreviousWrapper = styled(LinkWrapper)`
+  flex: 4;
+`;
 
 const ThreeDotWrapper = styled.div`
   display: flex;
   gap: 7px;
+  flex: 1;
 `;
 const NextWrapper = styled(LinkWrapper)`
   @media ${QUERIES.tabletAndUp} {
     justify-content: flex-end;
+    flex: 4;
   }
 `;
 
