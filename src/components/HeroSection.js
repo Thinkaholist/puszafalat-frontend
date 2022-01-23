@@ -6,6 +6,10 @@ import { QUERIES } from '../constants';
 
 const HeroSectionWrapper = styled.section`
   padding: 4rem 0 5rem;
+
+  @media ${QUERIES.tabletAndUp} {
+    padding: 6rem 0 7rem;
+  }
 `;
 
 const HeroContainer = styled(ContainerStyles)`
@@ -68,7 +72,7 @@ export default function HeroSection({ heroImage, headerText, subHeaderText }) {
     <HeroSectionWrapper>
       <HeroContainer>
         <ImageContainer>
-          <Img {...heroImage.image} alt={heroImage.altText} />
+          <Img {...heroImage.image} alt={heroImage.altText} width={250} />
         </ImageContainer>
         <TextContainer>
           <HeaderText>{headerText}</HeaderText>
