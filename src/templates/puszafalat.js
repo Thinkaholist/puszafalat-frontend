@@ -34,11 +34,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
 
   return (
     <>
-      <Layout
-        location={location}
-        menuItemText={data.header.recipesMenuItemText}
-        disclaimerText={data.footer.disclaimerText}
-      >
+      <Layout location={location} header={data.header} footer={data.footer}>
         <ContainerStyles>
           <Pagination
             previous={previous && previous}

@@ -5,17 +5,19 @@ import Layout from '../components/Layout';
 import localize from '../components/localize';
 import { ContainerStyles } from '../styles/ContainerStyles';
 import BandCampParser from '../components/BandCampParser';
+import HeroSection from '../components/HeroSection';
 
 const IndexPage = ({ data, location }) => {
   const { albumEmbedCode } = data.homePage;
   return (
     <>
-      <Layout
-        disclaimerText={data.footer.disclaimerText}
-        location={location}
-        menuItemText={data.header.recipesMenuItemText}
-      >
-        <ContainerStyles>
+      <Layout header={data.header} footer={data.footer} location={location}>
+        <HeroSection
+          heroImage={data.homePage.heroImage}
+          headerText={data.homePage.headerText}
+          subHeaderText={data.homePage.subHeaderText}
+        />
+        {/* <ContainerStyles>
           <div style={{ display: 'grid', placeContent: 'center' }}>
             <div style={{ width: '70%', margin: '0 auto' }}>
               <Img
@@ -41,7 +43,7 @@ const IndexPage = ({ data, location }) => {
           <div style={{ margin: '16px auto', maxWidth: 450 }}>
             <BandCampParser albumCode={albumEmbedCode} />
           </div>
-        </ContainerStyles>
+        </ContainerStyles> */}
       </Layout>
     </>
   );

@@ -37,7 +37,7 @@ const LogoLink = styled(Link)`
 
 const DesktopLanguageChangerStyles = styled(DesktopLangugeChanger)``;
 
-export default function Header({ location, menuItemText }) {
+export default function Header({ location, header: { recipesMenuItemText } }) {
   const { pathname } = location;
 
   return (
@@ -50,7 +50,7 @@ export default function Header({ location, menuItemText }) {
             <Logo />
           </LogoLink>
           <MenuItemLink to={`${getReceptekUrl(pathname)}/receptek`}>
-            {menuItemText}
+            {recipesMenuItemText}
           </MenuItemLink>
           {/* <HamburgerStyles>
             <ImMenu size={30} onClick={() => console.log('open menu')} />
