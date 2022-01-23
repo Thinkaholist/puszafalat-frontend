@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { lineBreaker } from '../utils/lineBreaker';
-import { FOOD_COLORS } from '../constants';
+import { FOOD_COLORS, QUERIES } from '../constants';
 
 const FoodType = styled.p`
   background-color: ${(p) => FOOD_COLORS[p.serialNumber]};
@@ -30,6 +30,34 @@ const Making = styled.p`
   font-weight: 400;
 `;
 
+const FoodBadge = styled.span`
+  text-transform: uppercase;
+  background-color: ${(p) => FOOD_COLORS[p.serialNumber]};
+  font-size: ${10 / 16}rem;
+  padding: 2px 3px 1px;
+  border-radius: 2px;
+  color: var(--clr-white);
+  font-family: 'Adelle';
+
+  @media ${QUERIES.tabletAndUp} {
+    font-size: ${12 / 16}rem;
+    padding: 3px 4px 2px;
+    margin-top: 2px;
+    border-radius: 4px;
+  }
+`;
+
+const RecipeTitle = styled.h2`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  @media ${QUERIES.tabletAndUp} {
+    gap: 6px;
+    font-size: ${32 / 16}rem;
+  }
+`;
+
 export default function Recipe({
   foodType,
   recipeName,
@@ -43,10 +71,11 @@ export default function Recipe({
 
   return (
     <>
-      <FoodType serialNumber={serialNumber}>{foodType}</FoodType>
-      <h2>
+      {/* <FoodType serialNumber={serialNumber}>{foodType}</FoodType> */}
+      <RecipeTitle>
         {recipeName} {recipeNote && <span>({recipeNote})</span>}
-      </h2>
+        <FoodBadge serialNumber={serialNumber}>{foodType}</FoodBadge>
+      </RecipeTitle>
       <Ingredients>{lineBreakedIngredients}</Ingredients>
       <Making>{lineBreakedMaking}</Making>
     </>
