@@ -72,6 +72,9 @@ const GlobalStyles = createGlobalStyle`
         --clr-green: hsla(138 51% 40% / 1);
         --clr-orange: hsla(15 80% 55% / 1);
         --clr-pink: hsla(336 67% 67% / 1);
+        --clr-blue-light: hsla(202 69% 91% / 1);
+        --clr-green-light: hsla(138 51% 91% / 1);
+        --clr-orange-light: hsla(15 80% 91% / 1);
         
         --font-family: 'Agrandir',-apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
 
