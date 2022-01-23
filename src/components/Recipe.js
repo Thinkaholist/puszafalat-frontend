@@ -32,11 +32,11 @@ const Making = styled.p`
 
 const FoodBadge = styled.span`
   text-transform: uppercase;
-  background-color: ${(p) => FOOD_COLORS[p.serialNumber]};
+  background-color: ${(p) => FOOD_COLORS[`${p.serialNumber}-light`]};
+  color: ${(p) => FOOD_COLORS[p.serialNumber]};
   font-size: ${10 / 16}rem;
   padding: 2px 3px 1px;
   border-radius: 2px;
-  color: var(--clr-white);
   font-family: 'Adelle';
 
   @media ${QUERIES.tabletAndUp} {
