@@ -9,19 +9,19 @@ const Wrapper = styled.div`
 `;
 
 const MainContent = styled.main`
-  padding: 1rem 0;
+  /* padding: 1rem 0; */
 `;
 
 export default function Layout({
   location,
   children,
-  disclaimerText,
-  menuItemText,
+  footer: { disclaimerText },
+  header,
 }) {
   return (
     <>
       <Wrapper>
-        <Header location={location} menuItemText={menuItemText} />
+        <Header location={location} header={header} />
         <MainContent>{children}</MainContent>
         <footer
           style={{

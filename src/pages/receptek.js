@@ -46,11 +46,7 @@ const Receptek = ({ data, location }) => {
 
   return (
     <>
-      <Layout
-        location={location}
-        menuItemText={data.header.recipesMenuItemText}
-        disclaimerText={data.footer.disclaimerText}
-      >
+      <Layout location={location} header={data.header} footer={data.footer}>
         <ContainerStyles>
           <div
             style={{
