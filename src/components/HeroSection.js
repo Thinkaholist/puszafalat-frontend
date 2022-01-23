@@ -5,7 +5,7 @@ import { ContainerStyles } from '../styles/ContainerStyles';
 import { QUERIES } from '../constants';
 
 const HeroSectionWrapper = styled.section`
-  margin: 1rem 0 2rem;
+  padding: 4rem 0 5rem;
 `;
 
 const HeroContainer = styled(ContainerStyles)`
