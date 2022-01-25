@@ -31,8 +31,13 @@ const GridContainer = styled.div`
 
 const Receptek = ({ data, location }) => {
   const { pathname } = location;
-  const { appetizersButtonText, dessertsButtonText, mainCoursesButtonText } =
-    data.recipesPage;
+  const {
+    appetizersButtonText,
+    dessertsButtonText,
+    mainCoursesButtonText,
+    allRecipeButtonText,
+    noPuszafalatFoundText,
+  } = data.recipesPage;
   const puszafalatok = data.allSanityPuszafalat.nodes;
   const [filtered, setFiltered] = useState(puszafalatok);
 
@@ -85,15 +90,13 @@ const Receptek = ({ data, location }) => {
                 defaultChecked
               />
               <AllRadioButton htmlFor='allRecipe'>
-                All recipe (should come from Sanity)
+                {allRecipeButtonText}
               </AllRadioButton>
             </div>
           </div>
           <GridContainer>
             {!filtered.length && (
-              <h4 style={{ textAlign: 'center' }}>
-                Nem találtunk Puszafalatot!(Should come from Sanity)
-              </h4>
+              <h4 style={{ textAlign: 'center' }}>{noPuszafalatFoundText}</h4>
             )}
             {filtered.length > 0 &&
               filtered.map((puszafalat) => (
@@ -128,6 +131,18 @@ export const query = graphql`
         sk
       }
       mainCoursesButtonText {
+        _type
+        en
+        hu
+        sk
+      }
+      allRecipeButtonText {
+        _type
+        en
+        hu
+        sk
+      }
+      noPuszafalatFoundText {
         _type
         en
         hu
