@@ -6,6 +6,30 @@ import Layout from '../components/Layout';
 import { ContainerStyles } from '../styles/ContainerStyles';
 import RadioButton from '../components/RadioButton';
 import PuszaCard from '../components/PuszaCard';
+import { QUERIES } from '../constants';
+
+const ButtonsContainer = styled.div`
+  margin: 1rem auto;
+  margin-bottom: 0;
+`;
+
+const ButtonFlex = styled.div`
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+
+  @media ${QUERIES.tabletAndUp} {
+    flex-direction: row;
+    justify-content: space-between;
+  } ;
+`;
+
+const AllRadioInputWrapper = styled.div`
+  display: grid;
+  place-content: center;
+  margin: 1rem auto;
+`;
 
 const AllRadioInput = styled.input`
   display: none;
@@ -53,35 +77,28 @@ const Receptek = ({ data, location }) => {
     <>
       <Layout location={location} header={data.header} footer={data.footer}>
         <ContainerStyles>
-          <div
-            style={{
-              margin: '1rem auto',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 10,
-              alignItems: 'center',
-            }}
-            onChange={onChangeValue}
-          >
-            <RadioButton
-              id='appetizer'
-              color='var(--clr-blue)'
-              label={appetizersButtonText}
-              value={1}
-            />
-            <RadioButton
-              id='mainCourse'
-              color='var(--clr-green)'
-              label={mainCoursesButtonText}
-              value={2}
-            />
-            <RadioButton
-              id='dessert'
-              color='var(--clr-orange)'
-              label={dessertsButtonText}
-              value={3}
-            />
-            <div>
+          <ButtonsContainer onChange={onChangeValue}>
+            <ButtonFlex>
+              <RadioButton
+                id='appetizer'
+                color='var(--clr-blue)'
+                label={appetizersButtonText}
+                value={1}
+              />
+              <RadioButton
+                id='mainCourse'
+                color='var(--clr-green)'
+                label={mainCoursesButtonText}
+                value={2}
+              />
+              <RadioButton
+                id='dessert'
+                color='var(--clr-orange)'
+                label={dessertsButtonText}
+                value={3}
+              />
+            </ButtonFlex>
+            <AllRadioInputWrapper>
               <AllRadioInput
                 id='allRecipe'
                 type='radio'
@@ -92,12 +109,12 @@ const Receptek = ({ data, location }) => {
               <AllRadioButton htmlFor='allRecipe'>
                 {allRecipeButtonText}
               </AllRadioButton>
-            </div>
-          </div>
+            </AllRadioInputWrapper>
+          </ButtonsContainer>
+          {!filtered.length && (
+            <h2 style={{ textAlign: 'center' }}>{noPuszafalatFoundText}</h2>
+          )}
           <GridContainer>
-            {!filtered.length && (
-              <h4 style={{ textAlign: 'center' }}>{noPuszafalatFoundText}</h4>
-            )}
             {filtered.length > 0 &&
               filtered.map((puszafalat) => (
                 <PuszaCard
