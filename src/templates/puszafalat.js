@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import localize from '../components/localize';
 import Layout from '../components/Layout';
 import { ContainerStyles } from '../styles/ContainerStyles';
+import { TextContainerStyles } from '../styles/TextContainerStyles';
 import { lineBreaker } from '../utils/lineBreaker';
 import Recipe from '../components/Recipe';
 import Pagination from '../components/Pagination';
@@ -68,18 +69,20 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
           </h2>
         </div>
         <ContainerStyles>
-          <h1 style={{ marginBottom: 19 }}>{title}</h1>
-          <div style={{ marginBottom: 19 }}>{lineBreakedStory}</div>
-          <div style={{ margin: '1rem 0' }}>
-            <Img
-              {...image}
-              alt={altText}
-              width={800}
-              style={{
-                width: '100%',
-              }}
-            />
-          </div>
+          <TextContainerStyles>
+            <h1 style={{ marginBottom: 19 }}>{title}</h1>
+            <div style={{ marginBottom: 19 }}>{lineBreakedStory}</div>
+            <div style={{ margin: '4rem 0' }}>
+              <Img
+                {...image}
+                alt={altText}
+                width={800}
+                style={{
+                  width: '100%',
+                }}
+              />
+            </div>
+          </TextContainerStyles>
         </ContainerStyles>
         <br />
         <div style={{ position: 'relative', margin: '2rem 0' }}>
