@@ -29,6 +29,26 @@ const HamburgerStyles = styled.div`
 
 const MenuItemLink = styled(Link)`
   justify-content: flex-end;
+  color: var(--clr-black);
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 18px;
+  span {
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.2s linear;
+    background-color: ${(p) =>
+      p.pathname.includes('/receptek') ? 'var(--clr-pink)' : 'transparent'};
+    padding: 6px 10px 4px;
+    border-radius: 16px;
+    box-shadow: ${(p) =>
+      p.pathname.includes('/receptek')
+        ? '2px 2px 0 0 var(--clr-black)'
+        : 'none'};
+  }
+
+  &:hover span {
+    border-bottom: 1px solid;
+  }
 `;
 
 const LogoLink = styled(Link)`
@@ -49,8 +69,11 @@ export default function Header({ location, header: { recipesMenuItemText } }) {
           <LogoLink to={getUrl(pathname)}>
             <Logo />
           </LogoLink>
-          <MenuItemLink to={`${getReceptekUrl(pathname)}/receptek`}>
-            {recipesMenuItemText}
+          <MenuItemLink
+            to={`${getReceptekUrl(pathname)}/receptek`}
+            pathname={pathname}
+          >
+            <span>{recipesMenuItemText}</span>
           </MenuItemLink>
           {/* <HamburgerStyles>
             <ImMenu size={30} onClick={() => console.log('open menu')} />

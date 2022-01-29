@@ -4,24 +4,41 @@ import { Link } from 'gatsby';
 import Img from 'gatsby-plugin-sanity-image';
 import { FOOD_COLORS } from '../constants';
 
+const CardLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
+`;
+
 const CardWrapper = styled.article`
-  border: 2px solid;
+  /* border: 2px solid hsla(0, 0%, 0%, 0); */
   border-radius: 10px;
   background-color: var(--clr-white);
   box-shadow: 0 4px 4px 0 hsla(0, 0%, 0%, 0.25);
   display: grid;
   flex-direction: column;
   grid-template-rows: 60px 1fr 50px;
+  height: 100%;
+
+  &:hover {
+    /* border: 2px solid; */
+  }
 `;
 
 const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
+  border-radius: 10px 10px 0 0;
+  transition: background-color 0.2s linear;
+
+  ${CardLink}:hover & {
+    background-color: var(--clr-black);
+    color: var(--clr-white);
+  }
 `;
 
 const Title = styled.h3`
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 700;
   text-transform: uppercase;
   max-width: 19ch;
   text-align: center;
@@ -30,7 +47,7 @@ const Title = styled.h3`
 `;
 
 const ImageWrapper = styled.div`
-  border-top: 2px solid;
+  border-top: 1px solid;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -44,27 +61,18 @@ const ImageWrapper = styled.div`
   }
 `;
 
-const CardLink = styled(Link)`
-  color: inherit;
-  text-decoration: none;
-`;
-
 const CardFooter = styled.div`
   margin-top: auto;
   display: flex;
   height: 50px;
   font-family: 'Adelle';
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 700;
-  border-top: 2px solid;
-
-  &:hover {
-    cursor: pointer;
-  }
+  border-top: 1px solid;
 `;
 
 const FoodNameWrapper = styled.div`
-  border-right: 2px solid var(--clr-black);
+  /* border-right: 2px solid var(--clr-black); */
   flex: 3;
   display: flex;
   flex-direction: column;
@@ -75,7 +83,7 @@ const FoodNameWrapper = styled.div`
   border-radius: 0 0 0 8px;
   transition: background-color 0.2s linear;
 
-  ${CardFooter}:hover & {
+  ${CardLink}:hover & {
     background-color: var(--clr-black);
   }
 `;
@@ -103,17 +111,14 @@ export default function PuszaCard({
 }) {
   return (
     <>
-      <CardWrapper>
-        <TitleWrapper>
-          <Title>
-            {/* TODO: Delete rank from here */}
-            {title} {rank}
-          </Title>
-        </TitleWrapper>
-        <ImageWrapper>
-          <Img {...illustration.image} alt={illustration.altText} />
-        </ImageWrapper>
-        <CardLink to={`${getLocale(pathname)}/puszafalat/${current}`}>
+      <CardLink to={`${getLocale(pathname)}/puszafalat/${current}`}>
+        <CardWrapper>
+          <TitleWrapper>
+            <Title>{title}</Title>
+          </TitleWrapper>
+          <ImageWrapper>
+            <Img {...illustration.image} alt={illustration.altText} />
+          </ImageWrapper>
           <CardFooter>
             <FoodNameWrapper type={serialNumber}>
               <FoodName>{recipeName}</FoodName>
@@ -130,8 +135,8 @@ export default function PuszaCard({
               </svg>
             </ArrowWrapper>
           </CardFooter>
-        </CardLink>
-      </CardWrapper>
+        </CardWrapper>
+      </CardLink>
     </>
   );
 }
