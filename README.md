@@ -4,7 +4,7 @@
 
 ### DEV deploys:
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/acc5798e-23f0-42e3-b773-6d2a8f886fd2/deploy-status)](https://app.netlify.com/sites/puszafalat/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/acc5798e-23f0-42e3-b773-6d2a8f886fd2/deploy-status)](https://app.netlify.com/sites/puszafalat-dev/deploys)
 
 https://app.netlify.com/sites/puszafalat-dev/deploys
 
@@ -45,4 +45,4 @@ https://puszafalat.sanity.studio/
 - Any questions to the task should be in Jira comment thread any questions about the code itself in the PR comment thread on GitHub
 - When the PR is accepted you can merge that into the `development` branch. It should trigger a new build onto the development site. See at the top of this page. After successful build you can see the changes on the developer website
 
-- Before any new feature branch please use `git pull origin development` on your local `development` branch
+- Before any new feature branch please use `git pull` on your local `development` branch
