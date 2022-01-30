@@ -4,17 +4,17 @@ import { graphql } from 'gatsby';
 import localize from '../components/localize';
 import Layout from '../components/Layout';
 import { ContainerStyles } from '../styles/ContainerStyles';
-import { TextContainerStyles } from '../styles/TextContainerStyles';
-import { lineBreaker } from '../utils/lineBreaker';
 import Recipe from '../components/Recipe';
 import Pagination from '../components/Pagination';
 import Song from '../components/Song';
+import Story from '../components/Story';
+import Divider from '../components/Divider';
 
 const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
   const {
     title,
     story,
-    illustration: { image, altText },
+    illustration,
     recipeName,
     recipeNote,
     making,
@@ -24,8 +24,13 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
     songTitle,
     songLyrics,
   } = data.puszafalat;
+  const {
+    storyDividerText,
+    recipeDividerText,
+    songDividerText,
+    illustration: { image: pageImage, altText: pageAltText },
+  } = data.page;
   const { previous, next } = data;
-  const lineBreakedStory = lineBreaker(story);
   const previousLink =
     previous &&
     `${locale === '' ? '' : `/${locale}`}/puszafalat/${previous.slug.current}`;
@@ -44,72 +49,11 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
             nextLink={next && nextLink}
           />
         </ContainerStyles>
-        <div style={{ position: 'relative', margin: '2rem 0' }}>
-          <hr
-            style={{
-              border: 'none',
-              height: 2,
-              backgroundColor: 'var(--clr-black)',
-            }}
-          />
-          <h2
-            style={{
-              transform: 'translate(-50%, -50%)',
-              backgroundColor: 'var(--clr-background)',
-              width: 'max-content',
-              padding: '0 1rem',
-              position: 'absolute',
-              left: '50%',
-              textTransform: 'uppercase',
-              fontWeight: 300,
-              fontSize: 14,
-            }}
-          >
-            {data.page.storyDividerText}
-          </h2>
-        </div>
+        <Divider text={storyDividerText} />
         <ContainerStyles>
-          <TextContainerStyles>
-            <h1 style={{ marginBottom: 19 }}>{title}</h1>
-            <div style={{ marginBottom: 19 }}>{lineBreakedStory}</div>
-            <div style={{ margin: '4rem 0' }}>
-              <Img
-                {...image}
-                alt={altText}
-                width={800}
-                style={{
-                  width: '100%',
-                }}
-              />
-            </div>
-          </TextContainerStyles>
+          <Story title={title} story={story} illustration={illustration} />
         </ContainerStyles>
-        <br />
-        <div style={{ position: 'relative', margin: '2rem 0' }}>
-          <hr
-            style={{
-              border: 'none',
-              height: 2,
-              backgroundColor: 'var(--clr-black)',
-            }}
-          />
-          <h2
-            style={{
-              transform: 'translate(-50%, -50%)',
-              backgroundColor: 'var(--clr-background)',
-              width: 'max-content',
-              padding: '0 1rem',
-              position: 'absolute',
-              left: '50%',
-              textTransform: 'uppercase',
-              fontWeight: 300,
-              fontSize: 14,
-            }}
-          >
-            {data.page.recipeDividerText}
-          </h2>
-        </div>
-        <br />
+        <Divider text={recipeDividerText} />
         <ContainerStyles>
           <Recipe
             foodType={foodType}
@@ -120,30 +64,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
             serialNumber={serialNumber}
           />
         </ContainerStyles>
-        <div style={{ position: 'relative', margin: '2rem 0' }}>
-          <hr
-            style={{
-              border: 'none',
-              height: 2,
-              backgroundColor: 'var(--clr-black)',
-            }}
-          />
-          <h2
-            style={{
-              transform: 'translate(-50%, -50%)',
-              backgroundColor: 'var(--clr-background)',
-              width: 'max-content',
-              padding: '0 1rem',
-              position: 'absolute',
-              left: '50%',
-              textTransform: 'uppercase',
-              fontWeight: 300,
-              fontSize: 14,
-            }}
-          >
-            {data.page.songDividerText}
-          </h2>
-        </div>
+        <Divider text={songDividerText} />
         <ContainerStyles>
           <Song
             songTitle={songTitle}
@@ -157,10 +78,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
             nextLink={next && nextLink}
           />
           <div style={{ marginBottom: '2rem' }} />
-          <Img
-            {...data.page.illustration.image}
-            alt={data.page.illustration.altText}
-          />
+          <Img {...pageImage} alt={pageAltText} />
         </ContainerStyles>
       </Layout>
     </>
