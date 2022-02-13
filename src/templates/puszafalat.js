@@ -13,6 +13,7 @@ import Divider from '../components/Divider';
 const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
   const {
     title,
+    origin,
     story,
     illustration,
     recipeName,
@@ -28,6 +29,8 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
     storyDividerText,
     recipeDividerText,
     songDividerText,
+    ingredientsText,
+    makingText,
     illustration: { image: pageImage, altText: pageAltText },
   } = data.page;
   const { previous, next } = data;
@@ -49,11 +52,16 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
             nextLink={next && nextLink}
           />
         </ContainerStyles>
-        <Divider text={storyDividerText} />
+        <Divider text={storyDividerText} id='sztori' />
         <ContainerStyles>
-          <Story title={title} story={story} illustration={illustration} />
+          <Story
+            title={title}
+            origin={origin}
+            story={story}
+            illustration={illustration}
+          />
         </ContainerStyles>
-        <Divider text={recipeDividerText} />
+        <Divider text={recipeDividerText} id='recept' />
         <ContainerStyles>
           <Recipe
             foodType={foodType}
@@ -62,9 +70,11 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
             ingredients={ingredients}
             making={making}
             serialNumber={serialNumber}
+            ingredientsText={ingredientsText}
+            makingText={makingText}
           />
         </ContainerStyles>
-        <Divider text={songDividerText} />
+        <Divider text={songDividerText} id='dal' />
         <ContainerStyles>
           <Song
             songTitle={songTitle}
@@ -98,6 +108,12 @@ export const query = graphql`
         _type
         hu
         en
+        sk
+      }
+      origin {
+        _type
+        en
+        hu
         sk
       }
       story {
@@ -201,6 +217,18 @@ export const query = graphql`
         image {
           ...ImageWithPreview
         }
+      }
+      ingredientsText {
+        _type
+        en
+        hu
+        sk
+      }
+      makingText {
+        _type
+        en
+        hu
+        sk
       }
     }
     header: sanityHeaderPage(_id: { eq: "headerPage" }) {
