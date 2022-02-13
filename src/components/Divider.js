@@ -24,14 +24,12 @@ const DividerText = styled.h2`
   font-size: 14px;
 `;
 
-const Divider = ({ text }) => {
+const Divider = ({ text, id }) => {
   return (
-    <>
-      <DividerWrapper>
-        <Line />
-        <DividerText>{text}</DividerText>
-      </DividerWrapper>
-    </>
+    <DividerWrapper id={id}>
+      <Line />
+      <DividerText>{text}</DividerText>
+    </DividerWrapper>
   );
 };
 
