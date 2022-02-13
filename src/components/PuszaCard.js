@@ -10,8 +10,7 @@ const CardLink = styled(Link)`
 `;
 
 const CardWrapper = styled.article`
-  /* border: 2px solid hsla(0, 0%, 0%, 0); */
-  border-radius: 10px;
+  border-radius: 14px;
   background-color: var(--clr-white);
   box-shadow: 0 4px 4px 0 hsla(0, 0%, 0%, 0.25);
   display: grid;
@@ -20,7 +19,7 @@ const CardWrapper = styled.article`
   height: 100%;
 
   &:hover {
-    /* border: 2px solid; */
+    border: 2px solid;
   }
 `;
 
@@ -30,10 +29,10 @@ const TitleWrapper = styled.div`
   border-radius: 10px 10px 0 0;
   transition: background-color 0.2s linear;
 
-  ${CardLink}:hover & {
+  /* ${CardLink}:hover & {
     background-color: var(--clr-black);
     color: var(--clr-white);
-  }
+  } */
 `;
 
 const Title = styled.h3`
@@ -43,7 +42,7 @@ const Title = styled.h3`
   max-width: 19ch;
   text-align: center;
   margin: 0 auto;
-  padding: 1rem 0;
+  /* padding: 1rem 0; */
 `;
 
 const ImageWrapper = styled.div`

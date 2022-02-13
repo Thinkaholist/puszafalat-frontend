@@ -40,7 +40,7 @@ const AllRadioInput = styled.input`
 
 const AllRadioButton = styled.label`
   opacity: 1;
-  text-decoration: underline;
+  text-decoration: none;
   color: var(--clr-blue);
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;
