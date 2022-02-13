@@ -23,6 +23,9 @@ const HeroContainer = styled(ContainerStyles)`
 `;
 
 const ImageContainer = styled.div`
+  img {
+    width: 100%;
+  }
   @media ${QUERIES.tabletAndUp} {
     flex: 1;
   }
@@ -72,7 +75,7 @@ export default function HeroSection({ heroImage, headerText, subHeaderText }) {
     <HeroSectionWrapper>
       <HeroContainer>
         <ImageContainer>
-          <Img {...heroImage.image} alt={heroImage.altText} width={250} />
+          <Img {...heroImage.image} alt={heroImage.altText} />
         </ImageContainer>
         <TextContainer>
           <HeaderText>{headerText}</HeaderText>
