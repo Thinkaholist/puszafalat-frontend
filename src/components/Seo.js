@@ -2,7 +2,14 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql, useStaticQuery } from 'gatsby';
 
-export default function Seo({ children, location, description, title, image }) {
+export default function Seo({
+  children,
+  location,
+  description,
+  title,
+  image,
+  language,
+}) {
   const { metadata } = useStaticQuery(graphql`
     query {
       metadata: sanitySiteSettings(_id: { eq: "siteSettings" }) {
@@ -17,7 +24,7 @@ export default function Seo({ children, location, description, title, image }) {
   return (
     <>
       <Helmet titleTemplate={`%s • ${metadata.title}`}>
-        <html lang='en' />
+        <html lang={language || 'hu'} />
         <title>{title}</title>
         {/* Fav Icons */}
         <link rel='icon' type='image/png' href='/favicon.png' />

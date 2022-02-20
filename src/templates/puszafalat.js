@@ -43,7 +43,11 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
 
   return (
     <>
-      <Seo title={title} image={illustration} />
+      <Seo
+        title={title}
+        image={illustration}
+        language={locale === '' ? 'hu' : locale}
+      />
       <Layout location={location} header={data.header} footer={data.footer}>
         <ContainerStyles>
           <Pagination

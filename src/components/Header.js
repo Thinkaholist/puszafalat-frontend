@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import Logo from './Logo';
-import { ImMenu } from 'react-icons/im';
-import MobileLangugeChanger from './MobileLanguageChanger';
+// import { ImMenu } from 'react-icons/im';
+// import MobileLangugeChanger from './MobileLanguageChanger';
 import DesktopLangugeChanger from './DesktopLanguageChanger';
 import { ContainerStyles } from '../styles/ContainerStyles';
-import { QUERIES } from '../constants';
+// import { QUERIES } from '../constants';
 
 const HeaderStyles = styled.header`
   font-weight: 800;
