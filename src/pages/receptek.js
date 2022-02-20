@@ -225,6 +225,101 @@ export const query = graphql`
         hu
         sk
       }
+      text2 {
+        _type
+        en
+        hu
+        sk
+      }
+      partnersText {
+        _type
+        en
+        hu
+        sk
+      }
+      interregLogo {
+        _type
+        en {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+        hu {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+        sk {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+      }
+      viaCarpatiaLogo {
+        altText
+        image {
+          ...ImageWithPreview
+        }
+      }
+      fmzLogo {
+        altText
+        image {
+          ...ImageWithPreview
+        }
+      }
+      buildingPartnershipLogo {
+        _type
+        en {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+        hu {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+        sk {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+      }
+      developmentFundLogo {
+        _type
+        en {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+        hu {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+        sk {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+      }
+      skhuUrl {
+        url
+        displayText
+      }
+      viaCarpatiaUrl {
+        url
+        displayText
+      }
     }
   }
 `;
