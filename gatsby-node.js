@@ -61,7 +61,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
 
     const page = {
       component: puszafalatTemplate,
-      path: `/puszafalat/${current}`,
+      path: `/falat/${current}`,
       context: {
         slug: current,
         previousSlug,

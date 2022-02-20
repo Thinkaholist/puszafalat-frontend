@@ -7,6 +7,7 @@ import { ContainerStyles } from '../styles/ContainerStyles';
 import RadioButton from '../components/RadioButton';
 import PuszaCard from '../components/PuszaCard';
 import { QUERIES } from '../constants';
+import Seo from '../components/Seo';
 
 const ButtonsContainer = styled.div`
   margin: 1rem auto;
@@ -75,6 +76,7 @@ const Receptek = ({ data, location }) => {
 
   return (
     <>
+      <Seo title={data.header.recipesMenuItemText} />
       <Layout location={location} header={data.header} footer={data.footer}>
         <ContainerStyles>
           <ButtonsContainer onChange={onChangeValue}>

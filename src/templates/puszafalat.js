@@ -9,6 +9,7 @@ import Pagination from '../components/Pagination';
 import Song from '../components/Song';
 import Story from '../components/Story';
 import Divider from '../components/Divider';
+import Seo from '../components/Seo';
 
 const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
   const {
@@ -36,13 +37,13 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
   const { previous, next } = data;
   const previousLink =
     previous &&
-    `${locale === '' ? '' : `/${locale}`}/puszafalat/${previous.slug.current}`;
+    `${locale === '' ? '' : `/${locale}`}/falat/${previous.slug.current}`;
   const nextLink =
-    next &&
-    `${locale === '' ? '' : `/${locale}`}/puszafalat/${next.slug.current}`;
+    next && `${locale === '' ? '' : `/${locale}`}/falat/${next.slug.current}`;
 
   return (
     <>
+      <Seo title={title} image={illustration} />
       <Layout location={location} header={data.header} footer={data.footer}>
         <ContainerStyles>
           <Pagination
