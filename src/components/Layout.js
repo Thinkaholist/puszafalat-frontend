@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from './Header';
+import Footer from './Footer';
 
 const Wrapper = styled.div`
   display: flex;
@@ -10,27 +11,13 @@ const Wrapper = styled.div`
 
 const MainContent = styled.main``;
 
-export default function Layout({
-  location,
-  children,
-  footer: { disclaimerText },
-  header,
-}) {
+export default function Layout({ location, children, footer, header }) {
   return (
     <>
       <Wrapper>
         <Header location={location} header={header} />
         <MainContent>{children}</MainContent>
-        <footer
-          style={{
-            marginTop: 'auto',
-            padding: 20,
-            backgroundColor: 'var(--clr-black)',
-            color: 'white',
-          }}
-        >
-          {disclaimerText}
-        </footer>
+        <Footer footer={footer} />
       </Wrapper>
     </>
   );
