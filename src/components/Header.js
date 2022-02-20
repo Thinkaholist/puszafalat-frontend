@@ -53,6 +53,11 @@ const MenuItemLink = styled(Link)`
 
 const LogoLink = styled(Link)`
   justify-content: center;
+  display: block;
+
+  svg {
+    display: block;
+  }
 `;
 
 const DesktopLanguageChangerStyles = styled(DesktopLangugeChanger)``;
