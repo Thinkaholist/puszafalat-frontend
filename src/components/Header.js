@@ -52,11 +52,12 @@ const MenuItemLink = styled(Link)`
 `;
 
 const LogoLink = styled(Link)`
-  justify-content: center;
   display: block;
+  text-align: center;
 
   svg {
     display: block;
+    margin: 0 auto;
   }
 `;
 
