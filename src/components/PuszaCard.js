@@ -110,7 +110,7 @@ export default function PuszaCard({
 }) {
   return (
     <>
-      <CardLink to={`${getLocale(pathname)}/puszafalat/${current}`}>
+      <CardLink to={`${getLocale(pathname)}/falat/${current}`}>
         <CardWrapper>
           <TitleWrapper>
             <Title>{title}</Title>

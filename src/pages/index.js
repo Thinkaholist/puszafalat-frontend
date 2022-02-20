@@ -4,20 +4,30 @@ import Layout from '../components/Layout';
 import localize from '../components/localize';
 import HeroSection from '../components/HeroSection';
 import BandCampSection from '../components/BandCampSection';
+import Seo from '../components/Seo';
 
 const IndexPage = ({ data, location }) => {
-  const { albumEmbedCode } = data.homePage;
+  const { header, footer, homePage } = data;
+  const {
+    albumEmbedCode,
+    pageTitle,
+    heroImage,
+    headerText,
+    subHeaderText,
+    bandCampText,
+  } = homePage;
 
   return (
     <>
-      <Layout header={data.header} footer={data.footer} location={location}>
+      <Seo title={pageTitle} image={heroImage.image.asset.url} />
+      <Layout header={header} footer={footer} location={location}>
         <HeroSection
-          heroImage={data.homePage.heroImage}
-          headerText={data.homePage.headerText}
-          subHeaderText={data.homePage.subHeaderText}
+          heroImage={heroImage}
+          headerText={headerText}
+          subHeaderText={subHeaderText}
         />
         <BandCampSection
-          bandCampText={data.homePage.bandCampText}
+          bandCampText={bandCampText}
           albumEmbedCode={albumEmbedCode}
         />
       </Layout>
@@ -30,6 +40,12 @@ export default localize(IndexPage);
 export const query = graphql`
   query {
     homePage: sanityHomePage(_id: { eq: "homePage" }) {
+      pageTitle {
+        _type
+        en
+        hu
+        sk
+      }
       headerText {
         _type
         en
@@ -52,6 +68,9 @@ export const query = graphql`
         altText
         image {
           ...ImageWithPreview
+          asset {
+            url
+          }
         }
       }
       albumEmbedCode
