@@ -69,7 +69,7 @@ const Ingredients = styled.div`
   }
 `;
 
-const Making = styled.p`
+const Making = styled.div`
   font-family: Adelle;
   font-size: ${16 / 16}rem;
   font-weight: 400;

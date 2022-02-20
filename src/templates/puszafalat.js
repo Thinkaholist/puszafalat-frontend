@@ -45,7 +45,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
     <>
       <Seo
         title={title}
-        image={illustration}
+        image={illustration.image.asset.url}
         language={locale === '' ? 'hu' : locale}
       />
       <Layout location={location} header={data.header} footer={data.footer}>
@@ -131,6 +131,9 @@ export const query = graphql`
         altText
         image {
           ...ImageWithPreview
+          asset {
+            url
+          }
         }
       }
       recipeName {
@@ -221,6 +224,9 @@ export const query = graphql`
         altText
         image {
           ...ImageWithPreview
+          asset {
+            url
+          }
         }
       }
       ingredientsText {
