@@ -54,7 +54,7 @@ const GlobalStyles = createGlobalStyle`
     /*
     9. Create a root stacking context
     */
-    #root, #__next {
+    #root, #__next, #___gatsby {
         isolation: isolate;
     }
 
@@ -64,18 +64,29 @@ const GlobalStyles = createGlobalStyle`
 
     /* Global CSS Variables */
     :root {
-        --clr-background: hsla(69 47% 97% / 1);
-        --clr-black: hsla(0 0% 18% / 1);
-        --clr-blue: hsla(202 69% 56% / 1);
-        --clr-green: hsla(138 51% 40% / 1);
-        --clr-orange: hsla(15 80% 55% / 1);
-        --clr-pink: hsla(336 67% 67% / 1);
-        
-        --font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+        --clr-background: hsla(69, 47%, 97%, 1);
+        --clr-background-hover: hsla(69, 7%, 50%, 1);
+        --clr-black: hsla(0, 0%, 18%, 1);
+        --clr-white: hsla(0, 0%, 100%, 1);
+        --clr-blue: hsla(202, 69%, 56%, 1);
+        --clr-green: hsla(138, 51%, 40%, 1);
+        --clr-orange: hsla(15, 80%, 55%, 1);
+        --clr-pink: hsla(336, 67%, 67%, 1);
+        --clr-blue-light: hsla(202, 69%, 91%, 1);
+        --clr-green-light: hsla(138, 51%, 91%, 1);
+        --clr-orange-light: hsla(15, 80%, 91%, 1);
+
+        --font-family: 'Agrandir',-apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+
+        overflow-y: scroll;
     }
     
 
     /* Custom Global Styles */
+
+    html, body, #___gatsby, #gatsby-focus-wrapper {
+        height: 100%;
+    }
 
     body {
         background-color: var(--clr-background);

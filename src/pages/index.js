@@ -1,39 +1,202 @@
 import * as React from 'react';
-import GlobalStyles from '../styles/GlobalStyles';
-import Typography from '../styles/Typography';
-import Logo from '../images/puszafalat_LOGO-01.svg';
+import { graphql } from 'gatsby';
+import Layout from '../components/Layout';
+import localize from '../components/localize';
+import HeroSection from '../components/HeroSection';
+import BandCampSection from '../components/BandCampSection';
+import Seo from '../components/Seo';
 
-const mainStyles = {
-  height: '100vh',
-  color: '#2e2e2e',
-  display: 'grid',
-  placeContent: 'center',
-  textAlign: 'center',
-  fontFamily:
-    'Agrandir, -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif',
-};
+const IndexPage = ({ data, location }) => {
+  const { header, footer, homePage } = data;
+  const {
+    albumEmbedCode,
+    pageTitle,
+    heroImage,
+    headerText,
+    subHeaderText,
+    bandCampText,
+    youtube1,
+    youtube2,
+  } = homePage;
 
-const IndexPage = () => {
   return (
     <>
-      {/* TODO: Move GlobalStyles & Typography to Layout Component when ready */}
-      <GlobalStyles />
-      <Typography />
-      <main style={mainStyles}>
-        <h1>Itt a</h1>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            margin: '2rem 0',
-          }}
-        >
-          <img src={Logo} alt='puszafalat logo' />
-        </div>
-        <h1>weboldal épül!</h1>
-      </main>
+      <Seo title={pageTitle} image={heroImage.image.asset.url} />
+      <Layout header={header} footer={footer} location={location}>
+        <HeroSection
+          heroImage={heroImage}
+          headerText={headerText}
+          subHeaderText={subHeaderText}
+          youtube1={youtube1}
+          youtube2={youtube2}
+        />
+        <BandCampSection
+          bandCampText={bandCampText}
+          albumEmbedCode={albumEmbedCode}
+        />
+      </Layout>
     </>
   );
 };
 
-export default IndexPage;
+export default localize(IndexPage);
+
+export const query = graphql`
+  query {
+    homePage: sanityHomePage(_id: { eq: "homePage" }) {
+      pageTitle {
+        _type
+        en
+        hu
+        sk
+      }
+      headerText {
+        _type
+        en
+        hu
+        sk
+      }
+      subHeaderText {
+        _type
+        en
+        hu
+        sk
+      }
+      bandCampText {
+        _type
+        en
+        hu
+        sk
+      }
+      heroImage {
+        altText
+        image {
+          ...ImageWithPreview
+          asset {
+            url
+          }
+        }
+      }
+      albumEmbedCode
+      youtube1 {
+        displayText
+        url
+      }
+      youtube2 {
+        displayText
+        url
+      }
+    }
+    header: sanityHeaderPage(_id: { eq: "headerPage" }) {
+      recipesMenuItemText {
+        _type
+        hu
+        en
+        sk
+      }
+    }
+    footer: sanityFooterPage(_id: { eq: "footerPage" }) {
+      disclaimerText {
+        _type
+        en
+        hu
+        sk
+      }
+      text2 {
+        _type
+        en
+        hu
+        sk
+      }
+      partnersText {
+        _type
+        en
+        hu
+        sk
+      }
+      interregLogo {
+        _type
+        en {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+        hu {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+        sk {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+      }
+      viaCarpatiaLogo {
+        altText
+        image {
+          ...ImageWithPreview
+        }
+      }
+      fmzLogo {
+        altText
+        image {
+          ...ImageWithPreview
+        }
+      }
+      buildingPartnershipLogo {
+        _type
+        en {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+        hu {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+        sk {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+      }
+      developmentFundLogo {
+        _type
+        en {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+        hu {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+        sk {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+      }
+      skhuUrl {
+        url
+        displayText
+      }
+      viaCarpatiaUrl {
+        url
+        displayText
+      }
+    }
+  }
+`;

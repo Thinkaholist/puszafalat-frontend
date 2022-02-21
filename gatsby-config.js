@@ -9,6 +9,7 @@ module.exports = {
       options: {
         projectId: '6h8tota2',
         dataset: 'production',
+        watchMode: process.env.NODE_ENV === 'development',
       },
     },
     'gatsby-plugin-styled-components',
@@ -23,6 +24,14 @@ module.exports = {
         path: './src/images/',
       },
       __key: 'images',
+    },
+    {
+      resolve: 'gatsby-plugin-sanity-image',
+      options: {
+        // Sanity project info (required)
+        projectId: '6h8tota2',
+        dataset: 'production',
+      },
     },
   ],
 };
