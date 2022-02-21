@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import BandCampParser from './BandCampParser';
 import { lineBreaker } from '../utils/lineBreaker';
+import { QUERIES } from '../constants';
 
 const EmbedTrack = styled.div`
   margin: 50px auto;
@@ -13,11 +14,19 @@ const SongTitle = styled.h2`
   font-weight: 800;
   font-size: 18px;
   text-align: center;
+
+  @media ${QUERIES.tabletAndUp} {
+    font-size: ${32 / 16}rem;
+  }
 `;
 
 const LyricsWrapper = styled.div`
   text-align: center;
   margin-bottom: 2rem;
+
+  @media ${QUERIES.tabletAndUp} {
+    font-size: ${20 / 16}rem;
+  }
 `;
 
 export default function Song({ songTitle, bandcampTrack, songLyrics }) {
