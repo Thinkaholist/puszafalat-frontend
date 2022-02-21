@@ -15,6 +15,8 @@ const IndexPage = ({ data, location }) => {
     headerText,
     subHeaderText,
     bandCampText,
+    youtube1,
+    youtube2,
   } = homePage;
 
   return (
@@ -25,6 +27,8 @@ const IndexPage = ({ data, location }) => {
           heroImage={heroImage}
           headerText={headerText}
           subHeaderText={subHeaderText}
+          youtube1={youtube1}
+          youtube2={youtube2}
         />
         <BandCampSection
           bandCampText={bandCampText}
@@ -74,6 +78,14 @@ export const query = graphql`
         }
       }
       albumEmbedCode
+      youtube1 {
+        displayText
+        url
+      }
+      youtube2 {
+        displayText
+        url
+      }
     }
     header: sanityHeaderPage(_id: { eq: "headerPage" }) {
       recipesMenuItemText {

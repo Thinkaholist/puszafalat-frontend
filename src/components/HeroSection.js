@@ -1,14 +1,16 @@
 import React from 'react';
 import Img from 'gatsby-plugin-sanity-image';
 import styled from 'styled-components';
+import YouTube from 'react-youtube';
+import getYoutubeId from 'get-youtube-id';
 import { ContainerStyles } from '../styles/ContainerStyles';
 import { QUERIES } from '../constants';
 
 const HeroSectionWrapper = styled.section`
-  padding: 4rem 0 5rem;
+  padding: 4rem 0 3rem;
 
   @media ${QUERIES.tabletAndUp} {
-    padding: 6rem 0 7rem;
+    padding: 6rem 0 3rem;
   }
 `;
 
@@ -70,7 +72,27 @@ const SubHeaderText = styled.h2`
   }
 `;
 
-export default function HeroSection({ heroImage, headerText, subHeaderText }) {
+const VideoContainer = styled(ContainerStyles)`
+  margin-top: 3rem;
+  flex-direction: column;
+  display: flex;
+  gap: 1rem;
+  & > * {
+    flex: 1;
+  }
+
+  @media ${QUERIES.tabletAndUp} {
+    flex-direction: row;
+  }
+`;
+
+export default function HeroSection({
+  heroImage,
+  headerText,
+  subHeaderText,
+  youtube1,
+  youtube2,
+}) {
   return (
     <HeroSectionWrapper>
       <HeroContainer>
@@ -82,6 +104,16 @@ export default function HeroSection({ heroImage, headerText, subHeaderText }) {
           <SubHeaderText>{subHeaderText}</SubHeaderText>
         </TextContainer>
       </HeroContainer>
+      <VideoContainer>
+        <YouTube
+          videoId={getYoutubeId(youtube1.url)}
+          opts={{ width: '100%' }}
+        />
+        <YouTube
+          videoId={getYoutubeId(youtube2.url)}
+          opts={{ width: '100%' }}
+        />
+      </VideoContainer>
     </HeroSectionWrapper>
   );
 }
