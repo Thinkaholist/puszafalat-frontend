@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { QUERIES } from '../constants';
 
 const DividerWrapper = styled.div`
   position: relative;
@@ -22,6 +23,10 @@ const DividerText = styled.h2`
   text-transform: uppercase;
   font-weight: 300;
   font-size: 14px;
+
+  @media ${QUERIES.laptopAndUp} {
+    font-size: 24px;
+  } ;
 `;
 
 const Divider = ({ text, id }) => {
