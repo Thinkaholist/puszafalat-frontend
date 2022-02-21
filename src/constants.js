@@ -1,3 +1,4 @@
+import React from 'react';
 // MOBILE FIRST APPROACH:
 
 export const BREAKPOINTS = {
@@ -22,4 +23,71 @@ export const FOOD_COLORS = {
   '1-light': 'var(--clr-blue-light)',
   '2-light': 'var(--clr-green-light)',
   '3-light': 'var(--clr-orange-light)',
+};
+
+// flags
+
+export const FLAGS = {
+  hu: (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 640 480'
+      width={30}
+      height={30}
+    >
+      <g fillRule='evenodd'>
+        <path fill='#fff' d='M640 480H0V0h640z'></path>
+        <path fill='#388d00' d='M640 480H0V320h640z'></path>
+        <path fill='#d43516' d='M640 160.1H0V.1h640z'></path>
+      </g>
+    </svg>
+  ),
+  sk: (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 640 480'
+      width={30}
+      height={30}
+    >
+      <path fill='#ee1c25' d='M0 0h640v480H0z'></path>
+      <path fill='#0b4ea2' d='M0 0h640v320H0z'></path>
+      <path fill='#fff' d='M0 0h640v160H0z'></path>
+      <path
+        fill='#fff'
+        d='M233 370.8c-43-20.7-104.6-61.9-104.6-143.2 0-81.4 4-118.4 4-118.4h201.3s3.9 37 3.9 118.4S276 350 233 370.8z'
+      ></path>
+      <path
+        fill='#ee1c25'
+        d='M233 360c-39.5-19-96-56.8-96-131.4s3.6-108.6 3.6-108.6h184.8s3.5 34 3.5 108.6C329 303.3 272.5 341 233 360z'
+      ></path>
+      <path
+        fill='#fff'
+        d='M241.4 209c10.7.2 31.6.6 50.1-5.6 0 0-.4 6.7-.4 14.4s.5 14.4.5 14.4c-17-5.7-38.1-5.8-50.2-5.7v41.2h-16.8v-41.2c-12-.1-33.1 0-50.1 5.7 0 0 .5-6.7.5-14.4 0-7.8-.5-14.4-.5-14.4 18.5 6.2 39.4 5.8 50 5.6v-25.9c-9.7 0-23.7.4-39.6 5.7 0 0 .5-6.6.5-14.4 0-7.7-.5-14.4-.5-14.4 15.9 5.3 29.9 5.8 39.6 5.7-.5-16.4-5.3-37-5.3-37s9.9.7 13.8.7c4 0 13.8-.7 13.8-.7s-4.8 20.6-5.3 37c9.7.1 23.7-.4 39.6-5.7 0 0-.5 6.7-.5 14.4 0 7.8.5 14.4.5 14.4a119 119 0 00-39.7-5.7v26z'
+      ></path>
+      <path
+        fill='#0b4ea2'
+        d='M233 263.3c-19.9 0-30.5 27.5-30.5 27.5s-6-13-22.2-13c-11 0-19 9.7-24.2 18.8 20 31.7 51.9 51.3 76.9 63.4 25-12 57-31.7 76.9-63.4-5.2-9-13.2-18.8-24.2-18.8-16.2 0-22.2 13-22.2 13S253 263.3 233 263.3z'
+      ></path>
+    </svg>
+  ),
+  en: (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 640 480'
+      width={30}
+      height={30}
+    >
+      <path fill='#012169' d='M0 0h640v480H0z'></path>
+      <path
+        fill='#FFF'
+        d='M75 0l244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z'
+      ></path>
+      <path
+        fill='#C8102E'
+        d='M424 281l216 159v40L369 281h55zm-184 20l6 35L54 480H0l240-179zM640 0v3L391 191l2-44L590 0h50zM0 0l239 176h-60L0 42V0z'
+      ></path>
+      <path fill='#FFF' d='M241 0v480h160V0H241zM0 160v160h640V160H0z'></path>
+      <path fill='#C8102E' d='M0 193v96h640v-96H0zM273 0v480h96V0h-96z'></path>
+    </svg>
+  ),
 };

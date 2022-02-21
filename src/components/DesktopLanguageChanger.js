@@ -5,11 +5,12 @@ import { QUERIES } from '../constants';
 import { defaultLang } from '../config';
 
 const Wrapper = styled.div`
-  /* display: none;
-  @media ${QUERIES.tabletAndUp} { */
-  display: flex;
-  gap: 1rem;
-  /* } ; */
+  display: none;
+
+  @media ${QUERIES.tabletAndUp} {
+    display: flex;
+    gap: 1rem;
+  }
 `;
 
 const LanguageCodeStyes = styled(Link)`
@@ -66,13 +67,13 @@ export default function DesktopLangugeChanger({ location: { pathname } }) {
   );
 }
 
-function getLocale(pathname, code) {
+export function getLocale(pathname, code) {
   // ->  /
   // ->  /en
   // ->  /receptek
   // ->  /en/receptek
-  // ->  /puszafalat/a-gyuru-hol
-  // ->  /en/puszafalat/a-gyuru-hol
+  // ->  /falat/a-gyuru-hol
+  // ->  /en/falat/a-gyuru-hol
   if (pathname === '/') return `/${code}`;
   if (pathname === '/en') return `/${code}`;
   if (pathname === '/sk') return `/${code}`;
