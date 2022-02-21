@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { Link } from 'gatsby';
 import Logo from './Logo';
 // import { ImMenu } from 'react-icons/im';
-// import MobileLangugeChanger from './MobileLanguageChanger';
+import MobileLangugeChanger from './MobileLanguageChanger';
 import DesktopLangugeChanger from './DesktopLanguageChanger';
 import { ContainerStyles } from '../styles/ContainerStyles';
-// import { QUERIES } from '../constants';
+import { QUERIES } from '../constants';
 
 const HeaderStyles = styled.header`
   font-weight: 800;
@@ -17,22 +17,19 @@ const HeaderStyles = styled.header`
 const HeaderContainerStyles = styled(ContainerStyles)`
   display: flex;
   align-items: center;
-  & > * {
+
+  /* & > * {
     flex: 1;
     display: flex;
-  }
+  } */
 `;
-
-const HamburgerStyles = styled.div`
-  justify-content: flex-end;
-`;
-
 const MenuItemLink = styled(Link)`
+  display: flex;
   justify-content: flex-end;
   color: var(--clr-black);
   text-decoration: none;
-  font-weight: 300;
-  font-size: 18px;
+  font-weight: 700;
+  font-size: 12px;
   span {
     border-bottom: 1px solid transparent;
     transition: border-bottom 0.2s linear;
@@ -49,6 +46,11 @@ const MenuItemLink = styled(Link)`
   &:hover span {
     border-bottom: 1px solid;
   }
+
+  @media ${QUERIES.laptopAndUp} {
+    font-size: 18px;
+    font-weight: 300;
+  }
 `;
 
 const LogoLink = styled(Link)`
@@ -61,7 +63,15 @@ const LogoLink = styled(Link)`
   }
 `;
 
-const DesktopLanguageChangerStyles = styled(DesktopLangugeChanger)``;
+const DesktopLanguageChangerStyles = styled(DesktopLangugeChanger)`
+  /* display: none;
+
+  @media ${QUERIES.tabletAndUp} {
+    display: flex;
+  } */
+`;
+
+const MobileLangugeChangerStyles = styled(MobileLangugeChanger)``;
 
 export default function Header({ location, header: { recipesMenuItemText } }) {
   const { pathname } = location;
@@ -70,36 +80,21 @@ export default function Header({ location, header: { recipesMenuItemText } }) {
     <>
       <HeaderStyles>
         <HeaderContainerStyles>
-          <DesktopLanguageChangerStyles location={location} />
-          {/* <MobileLangugeChanger /> */}
-          <LogoLink to={getUrl(pathname)}>
-            <Logo />
-          </LogoLink>
-          <MenuItemLink
-            to={`${getReceptekUrl(pathname)}/receptek`}
-            pathname={pathname}
-          >
-            <span>{recipesMenuItemText}</span>
-          </MenuItemLink>
-          {/* <HamburgerStyles>
-            <ImMenu size={30} onClick={() => console.log('open menu')} />
-          </HamburgerStyles> */}
-          {/* <div style={{ justifyContent: 'flex-start' }}>
-            <MobileLangugeChanger />
+          <div style={{ flex: 1 }}>
             <DesktopLanguageChangerStyles location={location} />
+            <MobileLangugeChangerStyles location={location} />
           </div>
-          <LogoLink to={getUrl(pathname)}>
+          <LogoLink to={getUrl(pathname)} style={{ flex: 1 }}>
             <Logo />
           </LogoLink>
-          <div style={{ flex: 1, display: 'flex' }}>
-            <HamburgerStyles
-              size={30}
-              onClick={() => console.log('open menu')}
-            />
-            <MenuItemLink to={`${getReceptekUrl(pathname)}/receptek`}>
-              {menuItemText}
+          <div style={{ flex: 1, justifyContent: 'flex-end' }}>
+            <MenuItemLink
+              to={`${getReceptekUrl(pathname)}/receptek`}
+              pathname={pathname}
+            >
+              <span>{recipesMenuItemText}</span>
             </MenuItemLink>
-          </div> */}
+          </div>
         </HeaderContainerStyles>
       </HeaderStyles>
     </>
