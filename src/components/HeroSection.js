@@ -1,8 +1,6 @@
 import React from 'react';
 import Img from 'gatsby-plugin-sanity-image';
 import styled from 'styled-components';
-import YouTube from 'react-youtube';
-import getYoutubeId from 'get-youtube-id';
 import { ContainerStyles } from '../styles/ContainerStyles';
 import { QUERIES } from '../constants';
 
@@ -104,16 +102,6 @@ export default function HeroSection({
           <SubHeaderText>{subHeaderText}</SubHeaderText>
         </TextContainer>
       </HeroContainer>
-      <VideoContainer>
-        <YouTube
-          videoId={getYoutubeId(youtube1.url)}
-          opts={{ width: '100%' }}
-        />
-        <YouTube
-          videoId={getYoutubeId(youtube2.url)}
-          opts={{ width: '100%' }}
-        />
-      </VideoContainer>
     </HeroSectionWrapper>
   );
 }
