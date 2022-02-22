@@ -29,7 +29,7 @@ const MenuItemLink = styled(Link)`
   color: var(--clr-black);
   text-decoration: none;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   span {
     border-bottom: 1px solid transparent;
     transition: border-bottom 0.2s linear;

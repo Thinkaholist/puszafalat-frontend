@@ -5,7 +5,7 @@ import { ContainerStyles } from '../styles/ContainerStyles';
 import { QUERIES } from '../constants';
 
 const HeroSectionWrapper = styled.section`
-  padding: 4rem 0 3rem;
+  padding: 4rem 0 2rem;
 
   @media ${QUERIES.tabletAndUp} {
     padding: 6rem 0 3rem;
@@ -24,14 +24,21 @@ const HeroContainer = styled(ContainerStyles)`
 
 const ImageContainer = styled.div`
   img {
-    width: 100%;
+    width: 70%;
+    margin: 0 auto;
   }
   @media ${QUERIES.tabletAndUp} {
     flex: 1;
+    img {
+      width: 100%;
+    }
   }
 
   @media ${QUERIES.laptopAndUp} {
     flex: 5;
+    img {
+      width: 100%;
+    }
   }
 `;
 
@@ -39,14 +46,17 @@ const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  text-align: center;
 
   @media ${QUERIES.tabletAndUp} {
     flex: 1;
     justify-content: center;
+    text-align: left;
   }
 
   @media ${QUERIES.laptopAndUp} {
     flex: 7;
+    text-align: left;
   }
 `;
 
