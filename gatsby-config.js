@@ -4,6 +4,7 @@ module.exports = {
     title: 'Puszafalat',
   },
   plugins: [
+    `gatsby-plugin-sitemap`,
     {
       resolve: 'gatsby-source-sanity',
       options: {
