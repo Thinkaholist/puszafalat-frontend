@@ -33,6 +33,8 @@ const IndexPage = ({ data, location }) => {
         <BandCampSection
           bandCampText={bandCampText}
           albumEmbedCode={albumEmbedCode}
+          youtube1={youtube1}
+          youtube2={youtube2}
         />
       </Layout>
     </>
