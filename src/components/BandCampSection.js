@@ -3,10 +3,12 @@ import styled from 'styled-components';
 import { ContainerStyles } from '../styles/ContainerStyles';
 import BandCampParser from './BandCampParser';
 import { QUERIES } from '../constants';
+import getYoutubeId from 'get-youtube-id';
+import ReactPlayer from 'react-player';
 
 const BandCampSectionWrapper = styled.section`
   background-color: rgba(49, 153, 81, 0.7);
-  padding: 2rem 0;
+  padding: 3rem 0;
 `;
 
 const BandCampText = styled.p`
@@ -34,10 +36,63 @@ const EmbedPlayerWrapper = styled.div`
   max-width: 450px;
 `;
 
-export default function BandCampSection({ bandCampText, albumEmbedCode }) {
+const VideoContainer = styled(ContainerStyles)`
+  margin-bottom: 2rem;
+  flex-direction: column;
+  display: flex;
+  gap: 2rem;
+
+  & > * {
+    flex: 1;
+  }
+
+  @media ${QUERIES.tabletAndUp} {
+    flex-direction: row;
+  }
+`;
+
+const Div = styled.div`
+  height: 261px;
+  line-height: 0;
+`;
+
+export default function BandCampSection({
+  bandCampText,
+  albumEmbedCode,
+  youtube1: { url: url1 },
+  youtube2: { url: url2 },
+}) {
   return (
     <>
       <BandCampSectionWrapper>
+        <VideoContainer>
+          <Div>
+            <ReactPlayer
+              url={`https://www.youtube.com/watch?v=${getYoutubeId(url1)}`}
+              width='100%'
+              height='261px'
+              light={
+                'https://cdn.sanity.io/images/6h8tota2/production/3fac9e27a891ac9f7375404595f9d4971c4b54bb-3358x1892.png?w=500'
+              }
+              // light={`https://i3.ytimg.com/vi/${getYoutubeId(
+              //   url1
+              // )}/hqdefault.jpg`}
+            />
+          </Div>
+          <Div>
+            <ReactPlayer
+              url={`https://www.youtube.com/watch?v=${getYoutubeId(url2)}`}
+              width='100%'
+              height='261px'
+              light={
+                'https://cdn.sanity.io/images/6h8tota2/production/3ec3de1b2c2e3e4f3706f153baa370952a77d2f9-3360x1890.png?w=500'
+              }
+              // light={`https://i3.ytimg.com/vi/${getYoutubeId(
+              //   url2
+              // )}/hqdefault.jpg`}
+            />
+          </Div>
+        </VideoContainer>
         <ContainerStyles>
           <BandCampText>{bandCampText}</BandCampText>
           <ArrowIconRow>
