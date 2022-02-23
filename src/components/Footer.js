@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
-import Image from 'gatsby-plugin-sanity-image';
-import ExternalLink from './ExternalLink';
-import { QUERIES } from '../constants';
+import React from "react";
+import styled from "styled-components";
+import Image from "gatsby-plugin-sanity-image";
+import ExternalLink from "./ExternalLink";
+import { QUERIES } from "../constants";
 
 const FooterStyles = styled.footer`
   margin-top: auto;
@@ -86,6 +86,7 @@ const Footer = ({
     fmzLogo,
     skhuUrl,
     viaCarpatiaUrl,
+    fmzUrl,
   },
 }) => {
   return (
@@ -118,6 +119,9 @@ const Footer = ({
         </LinkStyles>
         <LinkStyles href={viaCarpatiaUrl.url}>
           <span>{viaCarpatiaUrl.displayText}</span>
+        </LinkStyles>
+        <LinkStyles href={fmzUrl.url}>
+          <span>{fmzUrl.displayText}</span>
         </LinkStyles>
       </LinkContainer>
     </FooterStyles>

@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { graphql } from 'gatsby';
-import Layout from '../components/Layout';
-import localize from '../components/localize';
-import HeroSection from '../components/HeroSection';
-import BandCampSection from '../components/BandCampSection';
-import Seo from '../components/Seo';
+import * as React from "react";
+import { graphql } from "gatsby";
+import Layout from "../components/Layout";
+import localize from "../components/localize";
+import HeroSection from "../components/HeroSection";
+import BandCampSection from "../components/BandCampSection";
+import Seo from "../components/Seo";
 
 const IndexPage = ({ data, location }) => {
   const { header, footer, homePage } = data;
@@ -196,6 +196,10 @@ export const query = graphql`
         displayText
       }
       viaCarpatiaUrl {
+        url
+        displayText
+      }
+      fmzUrl {
         url
         displayText
       }
