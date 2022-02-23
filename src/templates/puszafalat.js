@@ -85,6 +85,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
             songTitle={songTitle}
             songLyrics={songLyrics}
             bandcampTrack={bandcampTrack}
+            serialNumber={serialNumber}
           />
           <Pagination
             previous={previous && previous}
