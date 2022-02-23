@@ -109,7 +109,7 @@ export default function BandCampSection({
             </ArrowIconWrapper>
           </ArrowIconRow>
           <EmbedPlayerWrapper>
-            <BandCampParser albumCode={albumEmbedCode} />
+            <BandCampParser albumCode={albumEmbedCode} linkColor='319951' />
           </EmbedPlayerWrapper>
         </ContainerStyles>
       </BandCampSectionWrapper>
