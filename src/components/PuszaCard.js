@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import Img from 'gatsby-plugin-sanity-image';
-import { FOOD_COLORS } from '../constants';
+import { FOOD_COLORS, QUERIES } from '../constants';
+import unify from '../utils/unifyString';
 
 const CardLink = styled(Link)`
   color: inherit;
@@ -15,7 +16,7 @@ const CardWrapper = styled.article`
   box-shadow: 0 4px 4px 0 hsla(0, 0%, 0%, 0.25);
   display: grid;
   flex-direction: column;
-  grid-template-rows: 60px 1fr 50px;
+  grid-template-rows: 60px 1fr 55px;
   height: 100%;
 
   &:hover {
@@ -39,10 +40,9 @@ const Title = styled.h3`
   font-size: 18px;
   font-weight: 700;
   text-transform: uppercase;
-  max-width: 19ch;
   text-align: center;
   margin: 0 auto;
-  /* padding: 1rem 0; */
+  padding: 6px;
 `;
 
 const ImageWrapper = styled.div`
@@ -55,7 +55,7 @@ const ImageWrapper = styled.div`
     width: 100%;
   }
   /* TODO: change to normal  */
-  @media (min-width: 756px) {
+  @media ${QUERIES.tabletAndUp} {
     min-height: revert;
   }
 `;
@@ -63,7 +63,7 @@ const ImageWrapper = styled.div`
 const CardFooter = styled.div`
   margin-top: auto;
   display: flex;
-  height: 50px;
+  height: 100%;
   font-family: 'Adelle';
   font-size: 16px;
   font-weight: 700;
@@ -71,7 +71,6 @@ const CardFooter = styled.div`
 `;
 
 const FoodNameWrapper = styled.div`
-  /* border-right: 2px solid var(--clr-black); */
   flex: 3;
   display: flex;
   flex-direction: column;
@@ -89,7 +88,7 @@ const FoodNameWrapper = styled.div`
 
 const FoodName = styled.p`
   text-align: center;
-  max-width: 15ch;
+  /* max-width: 20ch; */
 `;
 
 const ArrowWrapper = styled.div`
@@ -120,7 +119,7 @@ export default function PuszaCard({
           </ImageWrapper>
           <CardFooter>
             <FoodNameWrapper type={serialNumber}>
-              <FoodName>{recipeName}</FoodName>
+              <FoodName>{unify(recipeName)}</FoodName>
             </FoodNameWrapper>
             <ArrowWrapper>
               <svg

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import BandCampParser from './BandCampParser';
 import { lineBreaker } from '../utils/lineBreaker';
-import { QUERIES } from '../constants';
+import { QUERIES, FOOD_COLORS } from '../constants';
 
 const EmbedTrack = styled.div`
   margin: 50px auto;
@@ -29,13 +29,19 @@ const LyricsWrapper = styled.div`
   }
 `;
 
-export default function Song({ songTitle, bandcampTrack, songLyrics }) {
+export default function Song({
+  songTitle,
+  bandcampTrack,
+  songLyrics,
+  serialNumber,
+}) {
   const lineBreakedLyrics = lineBreaker(songLyrics);
+  const linkColor = FOOD_COLORS[`${serialNumber}-bg-hex`];
 
   return (
     <>
       <EmbedTrack>
-        <BandCampParser trackCode={bandcampTrack} linkColor='336699' />
+        <BandCampParser trackCode={bandcampTrack} linkColor={linkColor} />
       </EmbedTrack>
       <SongTitle>{songTitle}</SongTitle>
       <LyricsWrapper>{lineBreakedLyrics}</LyricsWrapper>

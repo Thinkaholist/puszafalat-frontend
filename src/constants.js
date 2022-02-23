@@ -23,6 +23,9 @@ export const FOOD_COLORS = {
   '1-light': 'var(--clr-blue-light)',
   '2-light': 'var(--clr-green-light)',
   '3-light': 'var(--clr-orange-light)',
+  '1-bg-hex': '41a3dc',
+  '2-bg-hex': '329a51',
+  '3-bg-hex': 'e85e30',
 };
 
 // flags
