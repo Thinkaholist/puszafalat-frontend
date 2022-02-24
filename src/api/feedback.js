@@ -1,7 +1,6 @@
 import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
-  console.log(req);
   const url = process.env.SLACK_WEBHOOK_URL;
 
   const headers = {
@@ -9,9 +8,7 @@ export default async function handler(req, res) {
   };
 
   const data = {
-    type: req.body.type,
-    title: req.body.title,
-    description: req.body.description,
+    text: req.body.title,
   };
 
   try {
