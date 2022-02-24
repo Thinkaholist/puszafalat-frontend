@@ -2,8 +2,7 @@ import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
   console.log(req);
-  const url =
-    'https://hooks.slack.com/services/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';
+  const url = process.env.SLACK_WEBHOOK_URL;
 
   const headers = {
     'Content-Type': 'application/json',
