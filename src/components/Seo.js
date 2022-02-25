@@ -51,7 +51,7 @@ export default function Seo({
         <meta property='og:description' content={description} key='ogdesc' />
         <meta
           name='google-site-verification'
-          content='2ySQfjsIsZM5ZRBMHKe8xT-awhRBkTIfCvNGl_d2YWc'
+          content='no-verification-code-needed-for-dev-site'
         />
         {children}
       </Helmet>
