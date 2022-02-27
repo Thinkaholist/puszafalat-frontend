@@ -12,6 +12,7 @@ import Divider from '../components/Divider';
 import Seo from '../components/Seo';
 
 const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
+  const { header, footer, logos } = data;
   const {
     title,
     origin,
@@ -48,7 +49,12 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
         image={illustration.image.asset.url}
         language={locale === '' ? 'hu' : locale}
       />
-      <Layout location={location} header={data.header} footer={data.footer}>
+      <Layout
+        location={location}
+        header={header}
+        footer={footer}
+        logos={logos.nodes}
+      >
         <ContainerStyles>
           <Pagination
             previous={previous && previous}
@@ -270,88 +276,39 @@ export const query = graphql`
         hu
         sk
       }
-      interregLogo {
-        _type
-        en {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-        hu {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-        sk {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-      }
-      viaCarpatiaLogo {
-        altText
-        image {
-          ...ImageWithPreview
-        }
-      }
-      fmzLogo {
-        altText
-        image {
-          ...ImageWithPreview
-        }
-      }
-      buildingPartnershipLogo {
-        _type
-        en {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-        hu {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-        sk {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-      }
-      developmentFundLogo {
-        _type
-        en {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-        hu {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-        sk {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-      }
-      skhuUrl {
+    }
+    logos: allSanityClickableLogo(sort: { fields: rank, order: ASC }) {
+      nodes {
+        rank
         url
-        displayText
-      }
-      viaCarpatiaUrl {
-        url
-        displayText
+        displayName
+        logo {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+        multilanguageLogo {
+          _type
+          en {
+            altText
+            image {
+              ...ImageWithPreview
+            }
+          }
+          hu {
+            altText
+            image {
+              ...ImageWithPreview
+            }
+          }
+          sk {
+            altText
+            image {
+              ...ImageWithPreview
+            }
+          }
+        }
       }
     }
   }
