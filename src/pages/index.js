@@ -32,16 +32,14 @@ const IndexPage = ({ data, location }) => {
           heroImage={heroImage}
           headerText={headerText}
           subHeaderText={subHeaderText}
-          youtube1={youtube1}
-          youtube2={youtube2}
+          location={location}
+          header={header}
         />
         <BandCampSection
           bandCampText={bandCampText}
           albumEmbedCode={albumEmbedCode}
           youtube1={youtube1}
           youtube2={youtube2}
-          header={header}
-          location={location}
         />
       </Layout>
     </>
