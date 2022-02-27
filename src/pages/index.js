@@ -35,6 +35,7 @@ const IndexPage = ({ data, location }) => {
           albumEmbedCode={albumEmbedCode}
           youtube1={youtube1}
           youtube2={youtube2}
+          header={header}
         />
       </Layout>
     </>
