@@ -36,6 +36,7 @@ const IndexPage = ({ data, location }) => {
           youtube1={youtube1}
           youtube2={youtube2}
           header={header}
+          location={location}
         />
       </Layout>
     </>
