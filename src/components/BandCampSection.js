@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { ContainerStyles } from '../styles/ContainerStyles';
 import BandCampParser from './BandCampParser';
@@ -56,11 +57,34 @@ const Div = styled.div`
   line-height: 0;
 `;
 
+const RecipesButtonLink = styled(Link)`
+  width: max-content;
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+
+  color: var(--clr-black);
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 20px;
+  background-color: var(--clr-pink);
+  padding: 6px 10px 4px;
+  border-radius: 16px;
+  box-shadow: 2px 2px 0 0 var(--clr-black);
+
+  svg {
+    width: 24px;
+  }
+`;
+
 export default function BandCampSection({
   bandCampText,
   albumEmbedCode,
   youtube1: { url: url1 },
   youtube2: { url: url2 },
+  header: { recipesMenuItemText },
 }) {
   return (
     <>
@@ -93,6 +117,20 @@ export default function BandCampSection({
             />
           </Div>
         </VideoContainer>
+        <div style={{ textAlign: 'center', marginBottom: 32 }}>
+          <RecipesButtonLink to='/receptek'>
+            {recipesMenuItemText}{' '}
+            <svg
+              width='60'
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 75.99 42.87'
+            >
+              <g id='ILLU_01'>
+                <path d='M55.56,0h-2A22.45,22.45,0,0,0,66.75,20.43H0v2H66.75A22.47,22.47,0,0,0,53.56,42.87h2A20.46,20.46,0,0,1,76,22.43v-2A20.45,20.45,0,0,1,55.56,0Z' />
+              </g>
+            </svg>
+          </RecipesButtonLink>
+        </div>
         <ContainerStyles>
           <BandCampText>{bandCampText}</BandCampText>
           <ArrowIconRow>
