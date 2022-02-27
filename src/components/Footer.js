@@ -71,6 +71,7 @@ const LinkContainer = styled.div`
 const Footer = ({ footer: { disclaimerText, text2, partnersText }, logos }) => {
   const skhuLogo = logos[2];
   const viaCarpatiaLogo = logos[1];
+  const fmzLogo = logos[0];
 
   return (
     <FooterStyles>
@@ -92,6 +93,9 @@ const Footer = ({ footer: { disclaimerText, text2, partnersText }, logos }) => {
         })}
       </LogoContainer>
       <LinkContainer>
+        <LinkStyles href={fmzLogo.url}>
+          <span>{fmzLogo.displayName}</span>
+        </LinkStyles>
         <LinkStyles href={skhuLogo.url}>
           <span>{skhuLogo.displayName}</span>
         </LinkStyles>

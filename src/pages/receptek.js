@@ -12,6 +12,10 @@ import Seo from '../components/Seo';
 const ButtonsContainer = styled.div`
   margin: 1rem auto;
   margin-bottom: 0;
+
+  @media ${QUERIES.tabletAndUp} {
+    margin: 3rem auto;
+  }
 `;
 
 const ButtonFlex = styled.div`
@@ -22,7 +26,7 @@ const ButtonFlex = styled.div`
 
   @media ${QUERIES.tabletAndUp} {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
   } ;
 `;
 
