@@ -12,6 +12,10 @@ import Seo from '../components/Seo';
 const ButtonsContainer = styled.div`
   margin: 1rem auto;
   margin-bottom: 0;
+
+  @media ${QUERIES.tabletAndUp} {
+    margin: 3rem auto;
+  }
 `;
 
 const ButtonFlex = styled.div`
@@ -22,7 +26,7 @@ const ButtonFlex = styled.div`
 
   @media ${QUERIES.tabletAndUp} {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
   } ;
 `;
 
@@ -63,6 +67,7 @@ const Receptek = ({ data, location }) => {
     allRecipeButtonText,
     noPuszafalatFoundText,
   } = data.recipesPage;
+  const { header, footer, logos } = data;
   const puszafalatok = data.allSanityPuszafalat.nodes;
   const [filtered, setFiltered] = useState(puszafalatok);
 
@@ -77,7 +82,12 @@ const Receptek = ({ data, location }) => {
   return (
     <>
       <Seo title={data.header.recipesMenuItemText} />
-      <Layout location={location} header={data.header} footer={data.footer}>
+      <Layout
+        location={location}
+        header={header}
+        footer={footer}
+        logos={logos.nodes}
+      >
         <ContainerStyles>
           <ButtonsContainer onChange={onChangeValue}>
             <ButtonFlex>
@@ -237,88 +247,39 @@ export const query = graphql`
         hu
         sk
       }
-      interregLogo {
-        _type
-        en {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-        hu {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-        sk {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-      }
-      viaCarpatiaLogo {
-        altText
-        image {
-          ...ImageWithPreview
-        }
-      }
-      fmzLogo {
-        altText
-        image {
-          ...ImageWithPreview
-        }
-      }
-      buildingPartnershipLogo {
-        _type
-        en {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-        hu {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-        sk {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-      }
-      developmentFundLogo {
-        _type
-        en {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-        hu {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-        sk {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-      }
-      skhuUrl {
+    }
+    logos: allSanityClickableLogo(sort: { fields: rank, order: ASC }) {
+      nodes {
+        rank
         url
-        displayText
-      }
-      viaCarpatiaUrl {
-        url
-        displayText
+        displayName
+        logo {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+        multilanguageLogo {
+          _type
+          en {
+            altText
+            image {
+              ...ImageWithPreview
+            }
+          }
+          hu {
+            altText
+            image {
+              ...ImageWithPreview
+            }
+          }
+          sk {
+            altText
+            image {
+              ...ImageWithPreview
+            }
+          }
+        }
       }
     }
   }

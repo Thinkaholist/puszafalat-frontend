@@ -52,7 +52,7 @@ const LogoContainer = styled.div`
   max-width: 200px;
 
   @media ${QUERIES.tabletAndUp} {
-    max-width: revert;
+    max-width: 800px;
   }
 `;
 
@@ -68,26 +68,11 @@ const LinkContainer = styled.div`
   }
 `;
 
-const InterregGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+const Footer = ({ footer: { disclaimerText, text2, partnersText }, logos }) => {
+  const skhuLogo = logos[2];
+  const viaCarpatiaLogo = logos[1];
+  const fmzLogo = logos[0];
 
-const Footer = ({
-  footer: {
-    disclaimerText,
-    text2,
-    partnersText,
-    interregLogo,
-    viaCarpatiaLogo,
-    buildingPartnershipLogo,
-    developmentFundLogo,
-    fmzLogo,
-    skhuUrl,
-    viaCarpatiaUrl,
-  },
-}) => {
   return (
     <FooterStyles>
       <FooterText>{disclaimerText}</FooterText>
@@ -98,26 +83,24 @@ const Footer = ({
         <span>{partnersText}</span>
       </FooterText>
       <LogoContainer>
-        <Image {...fmzLogo.image} alt={fmzLogo.altText} />
-        <Image {...viaCarpatiaLogo.image} alt={viaCarpatiaLogo.altText} />
-        <InterregGroup>
-          <Image {...interregLogo.image} alt={interregLogo.altText} />
-          <Image
-            {...buildingPartnershipLogo.image}
-            alt={buildingPartnershipLogo.altText}
-          />
-        </InterregGroup>
-        <Image
-          {...developmentFundLogo.image}
-          alt={developmentFundLogo.altText}
-        />
+        {logos.map(({ logo, multilanguageLogo, url }) => {
+          return (
+            <ExternalLink href={url}>
+              {logo && <Image {...logo.image} />}
+              {multilanguageLogo && <Image {...multilanguageLogo.image} />}
+            </ExternalLink>
+          );
+        })}
       </LogoContainer>
       <LinkContainer>
-        <LinkStyles href={skhuUrl.url}>
-          <span>{skhuUrl.displayText}</span>
+        <LinkStyles href={fmzLogo.url}>
+          <span>{fmzLogo.displayName}</span>
         </LinkStyles>
-        <LinkStyles href={viaCarpatiaUrl.url}>
-          <span>{viaCarpatiaUrl.displayText}</span>
+        <LinkStyles href={skhuLogo.url}>
+          <span>{skhuLogo.displayName}</span>
+        </LinkStyles>
+        <LinkStyles href={viaCarpatiaLogo.url}>
+          <span>{viaCarpatiaLogo.displayName}</span>
         </LinkStyles>
       </LinkContainer>
     </FooterStyles>

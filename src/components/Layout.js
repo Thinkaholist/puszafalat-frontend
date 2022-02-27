@@ -11,13 +11,13 @@ const Wrapper = styled.div`
 
 const MainContent = styled.main``;
 
-export default function Layout({ location, children, footer, header }) {
+export default function Layout({ location, children, footer, header, logos }) {
   return (
     <>
       <Wrapper>
         <Header location={location} header={header} />
         <MainContent>{children}</MainContent>
-        <Footer footer={footer} />
+        <Footer footer={footer} logos={logos} />
       </Wrapper>
     </>
   );

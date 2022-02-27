@@ -7,7 +7,7 @@ import BandCampSection from '../components/BandCampSection';
 import Seo from '../components/Seo';
 
 const IndexPage = ({ data, location }) => {
-  const { header, footer, homePage } = data;
+  const { header, footer, homePage, logos } = data;
   const {
     albumEmbedCode,
     pageTitle,
@@ -22,7 +22,12 @@ const IndexPage = ({ data, location }) => {
   return (
     <>
       <Seo title={pageTitle} image={heroImage.image.asset.url} />
-      <Layout header={header} footer={footer} location={location}>
+      <Layout
+        header={header}
+        footer={footer}
+        logos={logos.nodes}
+        location={location}
+      >
         <HeroSection
           heroImage={heroImage}
           headerText={headerText}
@@ -118,88 +123,39 @@ export const query = graphql`
         hu
         sk
       }
-      interregLogo {
-        _type
-        en {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-        hu {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-        sk {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-      }
-      viaCarpatiaLogo {
-        altText
-        image {
-          ...ImageWithPreview
-        }
-      }
-      fmzLogo {
-        altText
-        image {
-          ...ImageWithPreview
-        }
-      }
-      buildingPartnershipLogo {
-        _type
-        en {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-        hu {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-        sk {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-      }
-      developmentFundLogo {
-        _type
-        en {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-        hu {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-        sk {
-          altText
-          image {
-            ...ImageWithPreview
-          }
-        }
-      }
-      skhuUrl {
+    }
+    logos: allSanityClickableLogo(sort: { fields: rank, order: ASC }) {
+      nodes {
+        rank
         url
-        displayText
-      }
-      viaCarpatiaUrl {
-        url
-        displayText
+        displayName
+        logo {
+          altText
+          image {
+            ...ImageWithPreview
+          }
+        }
+        multilanguageLogo {
+          _type
+          en {
+            altText
+            image {
+              ...ImageWithPreview
+            }
+          }
+          hu {
+            altText
+            image {
+              ...ImageWithPreview
+            }
+          }
+          sk {
+            altText
+            image {
+              ...ImageWithPreview
+            }
+          }
+        }
       }
     }
   }

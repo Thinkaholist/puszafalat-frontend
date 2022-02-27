@@ -24,7 +24,7 @@ const HeroContainer = styled(ContainerStyles)`
 
 const ImageContainer = styled.div`
   img {
-    width: 70%;
+    width: 65%;
     margin: 0 auto;
   }
   @media ${QUERIES.tabletAndUp} {
@@ -50,7 +50,7 @@ const TextContainer = styled.div`
 
   @media ${QUERIES.tabletAndUp} {
     flex: 1;
-    justify-content: center;
+    justify-content: flex-end;
     text-align: left;
   }
 
@@ -65,8 +65,8 @@ const HeaderText = styled.h1`
   font-family: 'Adelle';
 
   @media ${QUERIES.laptopAndUp} {
-    font-size: ${50 / 16}rem;
-    line-height: 58px;
+    font-size: ${58 / 16}rem;
+    line-height: 1.2;
   }
 `;
 
@@ -75,32 +75,11 @@ const SubHeaderText = styled.h2`
   font-weight: 400;
 
   @media ${QUERIES.laptopAndUp} {
-    font-size: ${24 / 16}rem;
-    line-height: 44px;
+    font-size: ${20 / 16}rem;
   }
 `;
 
-const VideoContainer = styled(ContainerStyles)`
-  margin-top: 3rem;
-  flex-direction: column;
-  display: flex;
-  gap: 1rem;
-  & > * {
-    flex: 1;
-  }
-
-  @media ${QUERIES.tabletAndUp} {
-    flex-direction: row;
-  }
-`;
-
-export default function HeroSection({
-  heroImage,
-  headerText,
-  subHeaderText,
-  youtube1,
-  youtube2,
-}) {
+export default function HeroSection({ heroImage, headerText, subHeaderText }) {
   return (
     <HeroSectionWrapper>
       <HeroContainer>
