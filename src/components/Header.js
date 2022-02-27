@@ -107,8 +107,8 @@ function getUrl(pathname) {
   return '/';
 }
 
-function getReceptekUrl(pathname) {
+export const getReceptekUrl = (pathname) => {
   if (pathname.startsWith('/en')) return '/en';
   if (pathname.startsWith('/sk')) return '/sk';
   return '';
-}
+};

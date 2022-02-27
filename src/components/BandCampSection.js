@@ -6,6 +6,7 @@ import BandCampParser from './BandCampParser';
 import { QUERIES } from '../constants';
 import getYoutubeId from 'get-youtube-id';
 import ReactPlayer from 'react-player';
+import { getReceptekUrl } from '../components/Header';
 
 const BandCampSectionWrapper = styled.section`
   background-color: rgba(49, 153, 81, 0.7);
@@ -85,7 +86,9 @@ export default function BandCampSection({
   youtube1: { url: url1 },
   youtube2: { url: url2 },
   header: { recipesMenuItemText },
+  location,
 }) {
+  const { pathname } = location;
   return (
     <>
       <BandCampSectionWrapper>
@@ -96,7 +99,7 @@ export default function BandCampSection({
               width='100%'
               height='261px'
               light={
-                'https://cdn.sanity.io/images/6h8tota2/production/3fac9e27a891ac9f7375404595f9d4971c4b54bb-3358x1892.png?w=500'
+                'https://cdn.sanity.io/images/6h8tota2/production/fc55bb7bf50224d4cdbc3d57e40fd9f6bb7ea011-2560x1431.jpg?w=800'
               }
               // light={`https://i3.ytimg.com/vi/${getYoutubeId(
               //   url1
@@ -109,7 +112,7 @@ export default function BandCampSection({
               width='100%'
               height='261px'
               light={
-                'https://cdn.sanity.io/images/6h8tota2/production/3ec3de1b2c2e3e4f3706f153baa370952a77d2f9-3360x1890.png?w=500'
+                'https://cdn.sanity.io/images/6h8tota2/production/4063c7b4d255f7a0b386ada39d369a6da5520986-2556x1438.jpg?w=800'
               }
               // light={`https://i3.ytimg.com/vi/${getYoutubeId(
               //   url2
@@ -118,7 +121,7 @@ export default function BandCampSection({
           </Div>
         </VideoContainer>
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
-          <RecipesButtonLink to='/receptek'>
+          <RecipesButtonLink to={`${getReceptekUrl(pathname)}/receptek`}>
             {recipesMenuItemText}{' '}
             <svg
               width='60'
