@@ -63,7 +63,7 @@ const TextContainer = styled.div`
 `;
 
 const HeaderText = styled.h1`
-  font-size: ${32 / 16}rem;
+  font-size: ${34 / 16}rem;
   font-family: 'Adelle';
 
   @media ${QUERIES.laptopAndUp} {
@@ -94,7 +94,7 @@ const RecipesButtonLink = styled(Link)`
   font-weight: 300;
   font-size: 20px;
   background-color: var(--clr-pink);
-  padding: 6px 10px 4px;
+  padding: 8px 12px 6px;
   border-radius: 16px;
   box-shadow: 2px 2px 0 0 var(--clr-black);
   transition: box-shadow 0.1s ease-out;
