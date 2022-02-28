@@ -63,7 +63,7 @@ const TextContainer = styled.div`
 `;
 
 const HeaderText = styled.h1`
-  font-size: ${30 / 16}rem;
+  font-size: ${32 / 16}rem;
   font-family: 'Adelle';
 
   @media ${QUERIES.laptopAndUp} {
