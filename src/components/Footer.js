@@ -86,8 +86,8 @@ const Footer = ({ footer: { disclaimerText, text2, partnersText }, logos }) => {
         {logos.map(({ logo, multilanguageLogo, url }) => {
           return (
             <ExternalLink href={url}>
-              {logo && <Image {...logo.image} />}
-              {multilanguageLogo && <Image {...multilanguageLogo.image} />}
+              {logo && <Image {...logo.image} alt={logo.altText} />}
+              {multilanguageLogo && <Image {...multilanguageLogo.image} alt={multilanguageLogo.altText} />}
             </ExternalLink>
           );
         })}
