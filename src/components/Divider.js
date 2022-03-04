@@ -62,7 +62,7 @@ const Divider = ({ text, id, location }) => {
     <DividerWrapper id={id}>
       <Line />
       <DividerText>{text}</DividerText>
-      <LinkStyles to={`${location.href.split('#')[0]}#${id}`}>
+      <LinkStyles to={`${location?.href?.split('#')[0]}#${id}`}>
         <BiLink size={24} color='lightgray' />
       </LinkStyles>
     </DividerWrapper>
