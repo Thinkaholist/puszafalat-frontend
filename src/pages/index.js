@@ -14,6 +14,8 @@ const IndexPage = ({ data, location }) => {
     heroImage,
     headerText,
     subHeaderText,
+    explanationText,
+    ctaButtonText,
     bandCampText,
     youtube1,
     youtube2,
@@ -32,8 +34,9 @@ const IndexPage = ({ data, location }) => {
           heroImage={heroImage}
           headerText={headerText}
           subHeaderText={subHeaderText}
+          explanationText={explanationText}
+          ctaButtonText={ctaButtonText}
           location={location}
-          header={header}
         />
         <BandCampSection
           bandCampText={bandCampText}
@@ -64,6 +67,18 @@ export const query = graphql`
         sk
       }
       subHeaderText {
+        _type
+        en
+        hu
+        sk
+      }
+      explanationText {
+        _type
+        en
+        hu
+        sk
+      }
+      ctaButtonText {
         _type
         en
         hu

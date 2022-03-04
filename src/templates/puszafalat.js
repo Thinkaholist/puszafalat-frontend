@@ -63,7 +63,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
             nextLink={next && nextLink}
           />
         </ContainerStyles>
-        <Divider text={storyDividerText} id='sztori' />
+        <Divider text={storyDividerText} id='sztori' location={location} />
         <ContainerStyles>
           <Story
             title={title}
@@ -72,7 +72,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
             illustration={illustration}
           />
         </ContainerStyles>
-        <Divider text={recipeDividerText} id='recept' />
+        <Divider text={recipeDividerText} id='recept' location={location} />
         <ContainerStyles>
           <Recipe
             foodType={foodType}
@@ -85,7 +85,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
             makingText={makingText}
           />
         </ContainerStyles>
-        <Divider text={songDividerText} id='dal' />
+        <Divider text={songDividerText} id='dal' location={location} />
         <ContainerStyles>
           <Song
             songTitle={songTitle}
