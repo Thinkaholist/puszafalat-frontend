@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { ContainerStyles } from '../styles/ContainerStyles';
 import { QUERIES } from '../constants';
 import { getReceptekUrl } from '../components/Header';
+import { lineBreaker } from '../utils/lineBreaker';
 
 const HeroSectionWrapper = styled.section`
   padding: 4rem 0 2rem;
@@ -67,7 +68,7 @@ const HeaderText = styled.h1`
   font-family: 'Adelle';
 
   @media ${QUERIES.laptopAndUp} {
-    font-size: ${58 / 16}rem;
+    font-size: ${48 / 16}rem;
     line-height: 1.2;
   }
 `;
@@ -81,7 +82,18 @@ const SubHeaderText = styled.h2`
   }
 `;
 
+const ExplanationText = styled.p`
+  font-size: ${19 / 16}rem;
+  font-weight: 700;
+  font-family: 'Adelle';
+
+  @media ${QUERIES.laptopAndUp} {
+    font-size: ${24 / 16}rem;
+  }
+`;
+
 const RecipesButtonLink = styled(Link)`
+  font-family: 'Adelle';
   width: max-content;
   display: flex;
   gap: 6px;
@@ -120,10 +132,12 @@ export default function HeroSection({
   heroImage,
   headerText,
   subHeaderText,
+  explanationText,
+  ctaButtonText,
   location,
-  header: { recipesMenuItemText },
 }) {
   const { pathname } = location;
+  const parsedSubHeaderText = lineBreaker(subHeaderText);
 
   return (
     <HeroSectionWrapper>
@@ -133,9 +147,10 @@ export default function HeroSection({
         </ImageContainer>
         <TextContainer>
           <HeaderText>{headerText}</HeaderText>
-          <SubHeaderText>{subHeaderText}</SubHeaderText>
+          <SubHeaderText>{parsedSubHeaderText}</SubHeaderText>
+          <ExplanationText>{explanationText}</ExplanationText>
           <RecipesButtonLink to={`${getReceptekUrl(pathname)}/receptek`}>
-            {recipesMenuItemText}{' '}
+            {ctaButtonText}{' '}
             <svg
               width='60'
               xmlns='http://www.w3.org/2000/svg'

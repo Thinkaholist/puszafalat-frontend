@@ -87,7 +87,12 @@ const Footer = ({ footer: { disclaimerText, text2, partnersText }, logos }) => {
           return (
             <ExternalLink href={url}>
               {logo && <Image {...logo.image} alt={logo.altText} />}
-              {multilanguageLogo && <Image {...multilanguageLogo.image} alt={multilanguageLogo.altText} />}
+              {multilanguageLogo && (
+                <Image
+                  {...multilanguageLogo.image}
+                  alt={multilanguageLogo.altText}
+                />
+              )}
             </ExternalLink>
           );
         })}
@@ -96,11 +101,11 @@ const Footer = ({ footer: { disclaimerText, text2, partnersText }, logos }) => {
         <LinkStyles href={fmzLogo.url}>
           <span>{fmzLogo.displayName}</span>
         </LinkStyles>
-        <LinkStyles href={skhuLogo.url}>
-          <span>{skhuLogo.displayName}</span>
-        </LinkStyles>
         <LinkStyles href={viaCarpatiaLogo.url}>
           <span>{viaCarpatiaLogo.displayName}</span>
+        </LinkStyles>
+        <LinkStyles href={skhuLogo.url}>
+          <span>{skhuLogo.displayName}</span>
         </LinkStyles>
       </LinkContainer>
     </FooterStyles>
