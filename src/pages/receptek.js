@@ -69,6 +69,7 @@ const Receptek = ({ data, location }) => {
   } = data.recipesPage;
   const { header, footer, logos } = data;
   const puszafalatok = data.allSanityPuszafalat.nodes;
+  const pageTitle = data.homePage.pageTitle;
   const [filtered, setFiltered] = useState(puszafalatok);
 
   function onChangeValue({ target: { value } }) {
@@ -87,6 +88,7 @@ const Receptek = ({ data, location }) => {
         header={header}
         footer={footer}
         logos={logos.nodes}
+        pageTitle={pageTitle}
       >
         <ContainerStyles>
           <ButtonsContainer onChange={onChangeValue}>
@@ -280,6 +282,14 @@ export const query = graphql`
             }
           }
         }
+      }
+    }
+    homePage: sanityHomePage(_id: { eq: "homePage" }) {
+      pageTitle {
+        _type
+        en
+        hu
+        sk
       }
     }
   }

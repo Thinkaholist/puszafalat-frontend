@@ -29,6 +29,7 @@ const IndexPage = ({ data, location }) => {
         footer={footer}
         logos={logos.nodes}
         location={location}
+        pageTitle={pageTitle}
       >
         <HeroSection
           heroImage={heroImage}
