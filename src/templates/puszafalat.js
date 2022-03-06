@@ -36,6 +36,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
     illustration: { image: pageImage, altText: pageAltText },
   } = data.page;
   const { previous, next } = data;
+  const pageTitle = data.homePage.pageTitle;
   const previousLink =
     previous &&
     `${locale === '' ? '' : `/${locale}`}/falat/${previous.slug.current}`;
@@ -54,6 +55,7 @@ const Puszafalat = ({ data, location, pageContext: { locale = '' } }) => {
         header={header}
         footer={footer}
         logos={logos.nodes}
+        pageTitle={pageTitle}
       >
         <ContainerStyles>
           <Pagination
@@ -309,6 +311,14 @@ export const query = graphql`
             }
           }
         }
+      }
+    }
+    homePage: sanityHomePage(_id: { eq: "homePage" }) {
+      pageTitle {
+        _type
+        en
+        hu
+        sk
       }
     }
   }

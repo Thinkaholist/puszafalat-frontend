@@ -5,6 +5,7 @@ import { GrClose as Close } from 'react-icons/gr';
 import { QUERIES, FLAGS } from '../constants';
 import { defaultLang } from '../config';
 import { getLocale } from './DesktopLanguageChanger';
+import { getUrl, getReceptekUrl } from './Header';
 
 const Wrapper = styled.div`
   display: flex;
@@ -38,7 +39,6 @@ const MobileMenu = styled.div`
   width: 100%;
   height: 100%;
   background-color: var(--clr-background);
-  backdrop-filter: blur(2px);
   z-index: 2;
   user-select: none;
   transition: background-color 0.3s ease-out;
@@ -46,6 +46,8 @@ const MobileMenu = styled.div`
 
   padding: 30px;
   display: flex;
+  flex-direction: column;
+  gap: 2rem;
   justify-content: center;
   align-items: center;
 
@@ -61,27 +63,58 @@ const MobileMenu = styled.div`
 
 const FlagContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 
   svg {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
   }
 `;
 
 const FlagButton = styled.button`
   border: none;
-  padding: 0 12.5px;
+  padding: 0 6.25px;
   background-color: transparent;
 
   border: ${(p) =>
     p.sl === p.lang ? '2px solid var(--clr-blue)' : '2px solid transparent'};
 `;
 
-export default function MobileLangugeChanger({ location: { pathname } }) {
+const MenuItems = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 28px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+const MenuItem = styled.li`
+  a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: ${(p) => (p.selected ? '2px solid' : '')};
+    font-weight: ${(p) => (p.selected ? 700 : 500)};
+  }
+`;
+
+const Line = styled.hr`
+  background-color: var(--clr-black);
+  width: 100%;
+  height: 2px;
+`;
+
+export default function MobileLangugeChanger({
+  location,
+  recipesMenuItemText,
+  pageTitle,
+}) {
   const [selectedLanguage, setSelectedLanguage] = useState(defaultLang);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const { pathname } = location;
 
   useEffect(() => {
     if (pathname.startsWith('/en')) {
@@ -122,6 +155,17 @@ export default function MobileLangugeChanger({ location: { pathname } }) {
           <button onClick={closeMobileMenu} id='closeBtn'>
             <Close size={30} />
           </button>
+          <MenuItems>
+            <MenuItem selected={pathname.length < 4}>
+              <Link to={getUrl(pathname)}>{pageTitle}</Link>
+            </MenuItem>
+            <MenuItem selected={pathname.includes('receptek')}>
+              <Link to={`${getReceptekUrl(pathname)}/receptek`}>
+                {recipesMenuItemText}
+              </Link>
+            </MenuItem>
+          </MenuItems>
+          <Line />
           <FlagContainer>
             <FlagButton
               onClick={() => changeMobileLanguage(getLocale(pathname, ''))}

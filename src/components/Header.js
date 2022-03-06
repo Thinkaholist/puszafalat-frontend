@@ -73,7 +73,11 @@ const DesktopLanguageChangerStyles = styled(DesktopLangugeChanger)`
 
 const MobileLangugeChangerStyles = styled(MobileLangugeChanger)``;
 
-export default function Header({ location, header: { recipesMenuItemText } }) {
+export default function Header({
+  location,
+  header: { recipesMenuItemText },
+  pageTitle,
+}) {
   const { pathname } = location;
 
   return (
@@ -82,7 +86,11 @@ export default function Header({ location, header: { recipesMenuItemText } }) {
         <HeaderContainerStyles>
           <div style={{ flex: 1 }}>
             <DesktopLanguageChangerStyles location={location} />
-            <MobileLangugeChangerStyles location={location} />
+            <MobileLangugeChangerStyles
+              location={location}
+              recipesMenuItemText={recipesMenuItemText}
+              pageTitle={pageTitle}
+            />
           </div>
           <LogoLink to={getUrl(pathname)} style={{ flex: 1 }}>
             <Logo />
@@ -101,11 +109,11 @@ export default function Header({ location, header: { recipesMenuItemText } }) {
   );
 }
 
-function getUrl(pathname) {
+export const getUrl = (pathname) => {
   if (pathname.startsWith('/en')) return '/en';
   if (pathname.startsWith('/sk')) return '/sk';
   return '/';
-}
+};
 
 export const getReceptekUrl = (pathname) => {
   if (pathname.startsWith('/en')) return '/en';
