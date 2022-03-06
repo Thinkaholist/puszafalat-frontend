@@ -58,6 +58,18 @@ const GridContainer = styled.div`
   margin: 0 0 2rem 0;
 `;
 
+const SearchInput = styled.input`
+  padding: 10px;
+  padding-left: 1rem;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  width: min(400px, 100%);
+  font-size: 18px;
+  border-radius: 6px;
+  border: 1px solid hsla(0, 0%, 0%, 0.3);
+`;
+
 const Receptek = ({ data, location }) => {
   const { pathname } = location;
   const {
@@ -66,11 +78,20 @@ const Receptek = ({ data, location }) => {
     mainCoursesButtonText,
     allRecipeButtonText,
     noPuszafalatFoundText,
+    searchInputPlaceholder,
   } = data.recipesPage;
   const { header, footer, logos } = data;
   const puszafalatok = data.allSanityPuszafalat.nodes;
   const pageTitle = data.homePage.pageTitle;
-  const [filtered, setFiltered] = useState(puszafalatok);
+  const [filtered, setFiltered] = useState(
+    puszafalatok.map((pf) => {
+      return {
+        ...pf,
+        title: `<h3>${pf.title}</h3>`,
+      };
+    })
+  );
+  const [searchTerm, setSearchTerm] = useState('');
 
   function onChangeValue({ target: { value } }) {
     if (value === '') return setFiltered(() => puszafalatok);
@@ -79,6 +100,42 @@ const Receptek = ({ data, location }) => {
     );
     setFiltered(() => updated);
   }
+
+  const handleSearch = (ev) => {
+    const { value } = ev.target;
+    ev.preventDefault();
+    let pattern = new RegExp(searchTerm, 'gi');
+    const filteredSearch = puszafalatok.filter(
+      ({ title, recipeName, origin, story }) =>
+        title.toLowerCase().includes(value.toLowerCase()) ||
+        recipeName.toLowerCase().includes(value.toLowerCase()) ||
+        origin.toLowerCase().includes(value.toLowerCase()) ||
+        story.toLowerCase().includes(value.toLowerCase())
+    );
+    console.log({ filteredSearch });
+
+    const highlighted =
+      searchTerm === ''
+        ? filteredSearch.map((pf) => {
+            return {
+              ...pf,
+              title: `<h3>${pf.title}</h3>`,
+            };
+          })
+        : filteredSearch.map((pf) => {
+            let matchedTitle = pf.title.replace(
+              pattern,
+              (match) => `<mark>${match}</mark>`
+            );
+            return {
+              ...pf,
+              title: `<h3>${matchedTitle}</h3>`,
+            };
+          });
+    setFiltered(() => {
+      return highlighted;
+    });
+  };
 
   return (
     <>
@@ -125,6 +182,11 @@ const Receptek = ({ data, location }) => {
               </AllRadioButton>
             </AllRadioInputWrapper>
           </ButtonsContainer>
+          <SearchInput
+            placeholder={searchInputPlaceholder}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyUp={handleSearch}
+          />
           {!filtered.length && (
             <h2 style={{ textAlign: 'center' }}>{noPuszafalatFoundText}</h2>
           )}
@@ -174,6 +236,12 @@ export const query = graphql`
         sk
       }
       noPuszafalatFoundText {
+        _type
+        en
+        hu
+        sk
+      }
+      searchInputPlaceholder {
         _type
         en
         hu
