@@ -37,12 +37,15 @@ const TitleWrapper = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 18px;
-  font-weight: 700;
-  text-transform: uppercase;
+  width: 100%;
   text-align: center;
-  margin: 0 auto;
-  padding: 6px;
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0 auto;
+    padding: 6px;
+  }
 `;
 
 const ImageWrapper = styled.div`
