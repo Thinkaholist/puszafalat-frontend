@@ -36,13 +36,16 @@ const TitleWrapper = styled.div`
   } */
 `;
 
-const Title = styled.h3`
-  font-size: 18px;
-  font-weight: 700;
-  text-transform: uppercase;
+const Title = styled.div`
+  width: 100%;
   text-align: center;
-  margin: 0 auto;
-  padding: 6px;
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0 auto;
+    padding: 6px;
+  }
 `;
 
 const ImageWrapper = styled.div`
@@ -112,7 +115,7 @@ export default function PuszaCard({
       <CardLink to={`${getLocale(pathname)}/falat/${current}`}>
         <CardWrapper>
           <TitleWrapper>
-            <Title>{title}</Title>
+            <Title dangerouslySetInnerHTML={{ __html: title }} />
           </TitleWrapper>
           <ImageWrapper>
             <Img {...illustration.image} alt={illustration.altText} />
